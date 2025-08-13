@@ -140,7 +140,7 @@ export function demoHtml({ baseUrl }) {
       text-align: center;
     }
 
-    .hero h1 {
+    .hero h2 {
       margin-top: 16px;
       font-size: 48px;
       font-weight: 600;
@@ -184,7 +184,7 @@ export function demoHtml({ baseUrl }) {
       .main {
         grid-template-columns: 1fr;
       }
-      .hero h1 {
+      .hero h2 {
         font-size: 36px;
       }
     }
@@ -569,7 +569,7 @@ export function demoHtml({ baseUrl }) {
         <div class="logo">
           <div class="logo-icon"></div>
           <h1 class="logo-text">SoulmateSketch</h1>
-        </div>
+      </div>
         <div class="status-badge">
           <span class="status-dot"></span>
           <span class="shimmer">AI powered mystical insights</span>
@@ -591,7 +591,7 @@ export function demoHtml({ baseUrl }) {
             <div class="form-group">
               <label>Email</label>
               <input type="email" id="email" placeholder="you@example.com" required />
-            </div>
+      </div>
             <div class="form-group">
               <label>Interested in</label>
               <select id="interest">
@@ -599,36 +599,36 @@ export function demoHtml({ baseUrl }) {
                 <option value="male">Male</option>
                 <option value="surprise" selected>Surprise me</option>
               </select>
-            </div>
+    </div>
             <div class="form-group">
               <label>Birthday</label>
               <input type="date" id="birthday" />
-            </div>
+    </div>
             <div class="form-group">
               <label>Celebrity lookalike</label>
               <input type="text" id="celeb" placeholder="e.g. Ryan Gosling, Emma Stone..." />
-            </div>
+      </div>
             <div class="form-group full-width">
               <label>Upload your photo</label>
               <div class="file-upload" id="fileUpload">
                 <p>📸 Drag & drop or click to upload</p>
                 <p style="font-size: 12px; color: rgba(255,255,255,0.6);">Best results with clear face photos</p>
                 <input type="file" id="photo" accept="image/*" />
-              </div>
-            </div>
+      </div>
+      </div>
             <div class="form-group full-width">
               <label>Ideal vibe & personality</label>
               <textarea id="vibes" placeholder="e.g., adventurous yet grounded, loves art and travel, kind and ambitious..." maxLength="500"></textarea>
-            </div>
+      </div>
             <div class="form-group full-width">
               <label>Story / background details</label>
               <textarea id="dealbreakers" placeholder="Share details about your ideal match, their interests, values, or any specific traits that matter to you..."></textarea>
-            </div>
-          </div>
+        </div>
+      </div>
           <div class="credits">
             <div class="credits-text">All premium features included</div>
             <button type="submit" class="btn">Create Soulmate Sketch</button>
-          </div>
+    </div>
         </form>
       </section>
 
@@ -638,13 +638,13 @@ export function demoHtml({ baseUrl }) {
         <div class="results-panel">
           <div id="initialMessage" class="results-content">
             <p>Your personalized soulmate sketch and mystical insights will appear here after generation.</p>
-          </div>
-          
+    </div>
+
           <div id="loading" class="loading hidden">
             <div class="neural-network" id="neuralNetwork"></div>
             <div class="stage-text" id="stageText">Creating your mystical connection...</div>
             <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 16px;">Advanced AI processing in progress</p>
-          </div>
+      </div>
 
           <div id="results" class="hidden">
             <img id="resultImage" src="" alt="Your Soulmate Sketch" class="result-image" />
@@ -652,9 +652,9 @@ export function demoHtml({ baseUrl }) {
             <div class="result-actions">
               <a id="pdfLink" href="" class="btn">📋 Download Full Report</a>
               <button class="btn btn-secondary" onclick="restart()">🔄 Create Another</button>
-            </div>
-          </div>
-        </div>
+      </div>
+    </div>
+  </div>
       </section>
     </main>
 
@@ -666,7 +666,7 @@ export function demoHtml({ baseUrl }) {
   <script>
     let orderId = null;
 
-    // Simple neural network visualization
+    // Neural network visualization
     function createNeuralNetwork() {
       const container = document.getElementById('neuralNetwork');
       container.innerHTML = '';
