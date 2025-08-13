@@ -55,15 +55,20 @@ export function createRouter() {
         generateProfileText({ quiz, tier: order.tier, addons })
       ]);
 
-      const { filePath, sharePath } = await generateImage({ style: quiz.style || 'ethereal', quiz });
+      const { filePath, sharePath } = await generateImage({ style: quiz.style || 'ethereal', quiz, addons });
 
       const pdfPath = path.join(process.cwd(), 'uploads', `${id}_report.pdf`);
-      await generatePdf({ text, imagePath: filePath, outPath: pdfPath });
+      await generatePdf({ text, imagePath: filePath, outPath: pdfPath, addons });
 
       db.prepare('UPDATE orders SET result_image_path = ?, result_pdf_path = ?, status = ?, updated_at = ? WHERE id = ?')
         .run(filePath, pdfPath, 'delivered', new Date().toISOString(), id);
 
-      res.json({ image: `/uploads/${path.basename(filePath)}`, share: sharePath ? `/uploads/${path.basename(sharePath)}` : null, pdf: `/uploads/${path.basename(pdfPath)}` });
+      res.json({ 
+        imagePath: `uploads/${path.basename(filePath)}`, 
+        sharePath: sharePath ? `uploads/${path.basename(sharePath)}` : null, 
+        pdfPath: `uploads/${path.basename(pdfPath)}`,
+        profileText: text
+      });
     } catch (e) {
       console.error(e);
       res.status(500).json({ error: 'generation_failed' });
