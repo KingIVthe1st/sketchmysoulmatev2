@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Configure API base URL
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+// Configure API base URL - use relative URLs for Vercel deployment
+const API_BASE_URL = process.env.REACT_APP_API_URL || '/api';
 
 // Create axios instance with base configuration
 const api = axios.create({
@@ -43,16 +43,16 @@ api.interceptors.response.use(
 // API endpoints
 export const apiEndpoints = {
   // Client management
-  clientSetup: '/api/client/setup',
-  getClient: (id) => `/api/client/${id}`,
+  clientSetup: '/client/setup',
+  getClient: (id) => `/client/${id}`,
   
   // Trend analysis
-  analyzeTrends: '/api/trends/analyze',
-  getClientTrends: (id) => `/api/trends/${id}`,
+  analyzeTrends: '/trends/analyze',
+  getClientTrends: (id) => `/trends/${id}`,
   
   // Content generation
-  generateContent: '/api/content/generate',
-  getClientContent: (id) => `/api/content/${id}`,
+  generateContent: '/content/generate',
+  getClientContent: (id) => `/content/${id}`,
 };
 
 // API service functions
