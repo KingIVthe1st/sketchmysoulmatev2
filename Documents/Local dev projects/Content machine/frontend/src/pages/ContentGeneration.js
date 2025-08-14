@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FileText, Download, Copy, Instagram, CheckCircle, RefreshCw, ArrowLeft } from 'lucide-react';
+import { FileText, Download, Copy, RefreshCw, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { apiService } from '../services/api';
 

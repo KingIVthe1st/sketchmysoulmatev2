@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TrendingUp, Users, FileText, BarChart3, Plus, Eye, Download, Calendar } from 'lucide-react';
-import axios from 'axios';
+import { TrendingUp, Users, FileText, BarChart3, Plus, Eye, Calendar } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Dashboard = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { TrendingUp, Search, BarChart3, ArrowRight, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
+import { TrendingUp, ArrowRight, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { apiService } from '../services/api';
 
