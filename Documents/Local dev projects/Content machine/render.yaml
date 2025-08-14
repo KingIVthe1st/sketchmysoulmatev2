@@ -1,0 +1,46 @@
+services:
+  # Backend Flask API
+  - type: web
+    name: trendmaster-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NEWSAPI_KEY
+        sync: false
+      - key: TWITTER_BEARER_TOKEN
+        sync: false
+      - key: REDDIT_CLIENT_ID
+        sync: false
+      - key: REDDIT_CLIENT_SECRET
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: trendmaster-db
+          property: connectionString
+
+  # Frontend React App
+  - type: web
+    name: trendmaster-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://trendmaster-backend.onrender.com
+
+databases:
+  - name: trendmaster-db
+    databaseName: trendmaster
+    user: trendmaster_user
+    plan: free

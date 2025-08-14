@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FileText, Download, Copy, Instagram, CheckCircle, RefreshCw, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import { apiService } from '../services/api';
 
 const ContentGeneration = () => {
   const location = useLocation();
@@ -46,7 +46,7 @@ const ContentGeneration = () => {
     setIsLoading(true);
     
     try {
-      const response = await axios.post('/api/content/generate', {
+      const response = await apiService.generateContent({
         client_id: clientId,
         topics: topics.slice(0, 5) // Use top 5 topics
       });

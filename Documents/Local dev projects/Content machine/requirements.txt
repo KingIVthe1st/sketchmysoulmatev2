@@ -16,3 +16,5 @@ praw==7.7.1
 newsapi-python==0.2.6
 gnews==0.2.9
 schedule==1.2.0
+gunicorn==21.2.0
+psycopg2-binary==2.9.7

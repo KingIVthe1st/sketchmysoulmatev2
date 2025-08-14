@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Target, MessageSquare, Goal, Save, ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import { apiService } from '../services/api';
 
 const ClientSetup = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const ClientSetup = () => {
     setIsLoading(true);
     
     try {
-      const response = await axios.post('/api/client/setup', formData);
+      const response = await apiService.setupClient(formData);
       
       if (response.status === 201) {
         toast.success('Client setup successful!');
