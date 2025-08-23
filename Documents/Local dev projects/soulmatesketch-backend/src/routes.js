@@ -293,59 +293,148 @@ export function createRouter() {
   }
 
   function createImagePrompt(userPrefs, numerologyData, astrologyData, soulmateAge) {
+    // CRITICAL: Map user's INTEREST to the gender they want to see
+    // If user is male interested in females, generate a female image
+    // If user is female interested in males, generate a male image
     const genderMap = {
       'female': 'beautiful woman',
       'male': 'handsome man',
+      'woman': 'beautiful woman',
+      'man': 'handsome man',
       'any': 'attractive person',
       'prefer-not-to-say': 'attractive person'
     };
     
-    const baseGender = genderMap[userPrefs.preferred_gender] || 'attractive person';
+    // Use preferred_gender or determine from user's quiz data
+    let targetGender = userPrefs.preferred_gender || userPrefs.interestedIn || 'any';
     
-    let prompt = `Ultra-realistic portrait of a ${baseGender}, age ${soulmateAge}, moderate to very attractive, `;
+    // Handle quiz data format
+    if (userPrefs.preferences?.gender) {
+      targetGender = userPrefs.preferences.gender;
+    }
+    if (userPrefs.user?.interestedIn) {
+      targetGender = userPrefs.user.interestedIn;
+    }
     
-    // Add astrological influences
+    const baseGender = genderMap[targetGender.toLowerCase()] || genderMap['any'];
+    
+    // Build comprehensive numerology-based traits
+    let numerologyTraits = '';
+    if (numerologyData?.lifePath?.number) {
+      const lifePathTraits = {
+        1: 'natural leadership qualities, strong jawline, confident posture',
+        2: 'gentle features, harmonious appearance, diplomatic smile',
+        3: 'expressive face, creative energy, youthful appearance',
+        4: 'grounded presence, practical style, reliable appearance',
+        5: 'adventurous spirit visible in eyes, dynamic energy',
+        6: 'nurturing expression, warm smile, approachable demeanor',
+        7: 'mysterious depth in eyes, intellectual appearance, spiritual aura',
+        8: 'powerful presence, ambitious expression, executive style',
+        9: 'compassionate eyes, humanitarian spirit, wise appearance',
+        11: 'intuitive gaze, visionary expression, ethereal quality',
+        22: 'master builder presence, practical visionary appearance',
+        33: 'master teacher aura, enlightened expression'
+      };
+      numerologyTraits = lifePathTraits[numerologyData.lifePath.number] || '';
+    }
+    
+    // Build astrological appearance traits
+    let astroTraits = '';
     if (astrologyData) {
       const elementStyles = {
-        'Fire': 'warm, confident expression with bright, energetic eyes',
-        'Earth': 'grounded, serene expression with kind, steady eyes', 
-        'Air': 'intellectual, curious expression with bright, thoughtful eyes',
-        'Water': 'intuitive, compassionate expression with deep, emotional eyes'
+        'Fire': 'warm glowing skin, confident radiant smile, passionate eyes, athletic or energetic build',
+        'Earth': 'natural beauty, earthy tones, grounded presence, strong bone structure, practical elegance',
+        'Air': 'intellectual charm, bright alert eyes, refined features, graceful movements, modern style',
+        'Water': 'deep emotional eyes, intuitive expression, soft features, flowing hair, magnetic presence'
       };
-      prompt += elementStyles[astrologyData.element] + ', ';
+      
+      const signStyles = {
+        'Aries': 'bold features, athletic build, confident stance',
+        'Taurus': 'sensual beauty, strong neck, luxurious appearance',
+        'Gemini': 'youthful appearance, expressive hands, quick smile',
+        'Cancer': 'soft round features, nurturing expression, emotional depth',
+        'Leo': 'regal bearing, luxurious hair, commanding presence',
+        'Virgo': 'refined features, neat appearance, intelligent eyes',
+        'Libra': 'balanced features, charming smile, elegant style',
+        'Scorpio': 'intense gaze, magnetic presence, mysterious aura',
+        'Sagittarius': 'adventurous spirit, athletic build, optimistic expression',
+        'Capricorn': 'classic features, mature appearance, professional style',
+        'Aquarius': 'unique features, progressive style, friendly eyes',
+        'Pisces': 'dreamy eyes, artistic appearance, gentle presence'
+      };
+      
+      astroTraits = (elementStyles[astrologyData.element] || '') + ', ' + 
+                    (signStyles[astrologyData.sign] || '');
     }
     
-    // Add physical preferences if provided
-    if (userPrefs.hair_color) {
-      prompt += `${userPrefs.hair_color} hair, `;
+    // Build prompt with all comprehensive data
+    let prompt = `Ultra-realistic professional portrait photograph of a ${baseGender}, `;
+    prompt += `exactly ${soulmateAge} years old, `;
+    
+    // Add numerology-based appearance
+    if (numerologyTraits) {
+      prompt += numerologyTraits + ', ';
     }
-    if (userPrefs.eye_color) {
-      prompt += `${userPrefs.eye_color} eyes, `;
+    
+    // Add astrology-based appearance
+    if (astroTraits) {
+      prompt += astroTraits + ', ';
+    }
+    
+    // Add user's specific physical preferences
+    if (userPrefs.hair_color || userPrefs.preferences?.hair_color) {
+      const hairColor = userPrefs.hair_color || userPrefs.preferences.hair_color;
+      prompt += `${hairColor} hair styled beautifully, `;
+    }
+    
+    if (userPrefs.eye_color || userPrefs.preferences?.eye_color) {
+      const eyeColor = userPrefs.eye_color || userPrefs.preferences.eye_color;
+      prompt += `captivating ${eyeColor} eyes with depth and warmth, `;
     }
     
     // Add personality-based physical traits
-    if (userPrefs.personality_traits) {
+    if (userPrefs.personality_traits || userPrefs.preferences?.personality) {
+      const traits = userPrefs.personality_traits || userPrefs.preferences.personality;
       const personalityMap = {
-        'adventurous': 'athletic build with confident posture',
-        'artistic': 'creative styling with expressive features',
-        'intellectual': 'thoughtful expression with intelligent eyes',
-        'spiritual': 'serene expression with peaceful demeanor',
-        'ambitious': 'confident posture with determined expression'
+        'adventurous': 'athletic physique, sun-kissed skin, energetic stance',
+        'artistic': 'creative fashion sense, expressive features, unique style',
+        'intellectual': 'intelligent eyes behind stylish glasses (optional), thoughtful expression',
+        'spiritual': 'serene peaceful expression, meditation-inspired calmness, inner light',
+        'ambitious': 'power stance, determined expression, success-oriented appearance',
+        'romantic': 'soft romantic features, gentle smile, loving eyes',
+        'humorous': 'laugh lines, playful expression, warm engaging smile',
+        'caring': 'nurturing presence, kind eyes, comforting demeanor'
       };
       
       for (let trait in personalityMap) {
-        if (userPrefs.personality_traits.toLowerCase().includes(trait)) {
+        if (traits.toLowerCase().includes(trait)) {
           prompt += personalityMap[trait] + ', ';
         }
       }
     }
     
-    // Add celebrity inspiration if provided
-    if (userPrefs.celeb) {
-      prompt += `subtle inspiration from ${userPrefs.celeb} features, `;
+    // Add lifestyle/interest-based appearance
+    if (userPrefs.hobbies || userPrefs.interests) {
+      const interests = userPrefs.hobbies || userPrefs.interests || '';
+      if (interests.includes('fitness')) prompt += 'fit athletic body, ';
+      if (interests.includes('travel')) prompt += 'worldly sophisticated appearance, ';
+      if (interests.includes('music')) prompt += 'artistic creative vibe, ';
+      if (interests.includes('nature')) prompt += 'natural organic style, ';
+      if (interests.includes('tech')) prompt += 'modern contemporary appearance, ';
     }
     
-    prompt += 'professional studio lighting, high-end portrait photography, perfect skin, stunning features, extremely detailed, 8k resolution';
+    // Add celebrity inspiration if provided
+    if (userPrefs.celeb || userPrefs.preferences?.celebrity) {
+      const celeb = userPrefs.celeb || userPrefs.preferences.celebrity;
+      prompt += `subtle resemblance to ${celeb} but unique individual, `;
+    }
+    
+    // Professional photography settings
+    prompt += 'professional headshot, perfect golden hour lighting, bokeh background, ';
+    prompt += 'Canon EOS R5, 85mm f/1.2 lens, shallow depth of field, ';
+    prompt += 'warm natural skin tones, genuine authentic smile, direct eye contact with camera, ';
+    prompt += 'high-end fashion photography style, Vogue magazine quality, ';
+    prompt += 'extremely detailed, photorealistic, 8k resolution, award-winning portrait';
     
     return prompt;
   }
@@ -370,61 +459,122 @@ export function createRouter() {
     }
     
     try {
-      // Build comprehensive context for AI
+      // Build comprehensive context for AI with ALL user data
+      const userName = orderData.name || 'Seeker';
+      const birthDate = orderData.birth_date || orderData.birthdate || '';
+      const userGender = orderData.gender || orderData.user?.gender || '';
+      const seekingGender = orderData.preferred_gender || orderData.interestedIn || orderData.preferences?.gender || 'any';
+      const personality = orderData.personality_traits || orderData.preferences?.personality || '';
+      const interests = orderData.hobbies || orderData.interests || orderData.preferences?.interests || '';
+      const location = orderData.birth_city || orderData.preferences?.location || '';
+      const relationshipGoals = orderData.preferences?.relationship_goals || orderData.relationship_type || 'deep lasting connection';
+      
       const context = `
+        CRITICAL CONTEXT FOR PERSONALIZED SOULMATE READING:
+        
         User Profile:
-        - Name: ${orderData.name}
-        - Birth Date: ${orderData.birthdate}
-        - Seeking: ${orderData.preferences?.preferred_gender || 'any'}
-        - Relationship Goals: ${orderData.preferences?.relationship_goals || 'deep connection'}
-        - Personality Traits: ${orderData.preferences?.personality_traits || 'not specified'}
-        - Interests: ${orderData.preferences?.interests || 'not specified'}
-        - Location: ${orderData.preferences?.location || 'not specified'}
+        - Name: ${userName}
+        - Birth Date: ${birthDate}
+        - Gender: ${userGender}
+        - Seeking: ${seekingGender} partner
+        - Location/Birth City: ${location}
+        - Personality Traits: ${personality}
+        - Interests/Hobbies: ${interests}
+        - Relationship Goals: ${relationshipGoals}
+        - Age Range Preference: ${orderData.age_range || 'similar age'}
+        - Physical Preferences: Hair: ${orderData.hair_color || 'any'}, Eyes: ${orderData.eye_color || 'any'}
         
-        Numerology Analysis:
+        Numerology Deep Analysis:
         - Life Path Number: ${numerologyData?.lifePath?.number || 1}
-        - Life Path Meaning: ${numerologyData?.lifePath?.meaning || 'Natural leader'}
+        - Life Path Meaning: ${numerologyData?.lifePath?.meaning || 'Natural leader and pioneer'}
+        - Life Path Traits: ${numerologyData?.lifePath?.traits || 'Independent, ambitious, innovative'}
         - Destiny Number: ${numerologyData?.destiny?.number || 7}
-        - Destiny Meaning: ${numerologyData?.destiny?.meaning || 'Seeker of truth'}
+        - Destiny Meaning: ${numerologyData?.destiny?.meaning || 'Seeker of truth and wisdom'}
+        - Destiny Traits: ${numerologyData?.destiny?.traits || 'Analytical, spiritual, introspective'}
+        - Compatibility Numbers: Best matches with Life Path ${numerologyData?.lifePath?.compatibility || '3, 5, 7'}
         
-        Astrology Analysis:
-        - Sun Sign: ${astrologyData.sunSign}
-        - Element: ${astrologyData.element}
-        - Traits: ${astrologyData.traits}
-        - Compatible Signs: ${astrologyData.compatibleSigns?.join(', ')}
+        Astrology Deep Analysis:
+        - Sun Sign: ${astrologyData?.sign || 'Pisces'}
+        - Element: ${astrologyData?.element || 'Water'}
+        - Quality: ${astrologyData?.quality || 'Mutable'}
+        - Ruling Planet: ${astrologyData?.rulingPlanet || 'Neptune'}
+        - Key Traits: ${astrologyData?.personality || 'Intuitive, compassionate, creative'}
+        - Compatible Signs: ${astrologyData?.compatibility?.join(', ') || 'Cancer, Scorpio, Taurus, Capricorn'}
+        - Love Style: ${astrologyData?.loveStyle || 'Deep emotional connection, romantic, devoted'}
+        
+        Package Level: ${packageLevel}
         
         Package Level: ${packageLevel}
       `;
       
-      let systemPrompt = `You are a mystical soulmate advisor creating deeply personalized predictions based on numerology, astrology, and user data. 
-        Create unique, specific insights that feel personally crafted for this individual.
-        Be mystical yet believable, romantic yet grounded in the data provided.
-        Use the numerology and astrology data to create meaningful connections and predictions.`;
+      let systemPrompt = `You are an elite mystical soulmate advisor with deep expertise in numerology, astrology, and human psychology. 
+        You create HIGHLY PERSONALIZED, detailed predictions that incorporate EVERY piece of user data provided.
+        Your predictions are never generic - they reference specific user details, preferences, interests, and spiritual data.
+        You weave together numerology numbers, astrological elements, personality traits, and user preferences into cohesive insights.
+        Be mystical yet grounded, romantic yet believable, and always make each user feel like this reading was crafted uniquely for them.
+        Reference the user's specific interests, personality traits, location, and relationship goals in your predictions.`;
       
       let userPrompt = '';
       
       if (packageLevel === 'basic') {
-        userPrompt = `Based on the following profile, generate 5 unique, personalized soulmate predictions. 
-          Each should be specific to their numerology and astrology.
-          Format each as a short, impactful statement.
+        userPrompt = `Create 5 DEEPLY PERSONALIZED soulmate predictions that incorporate ALL the specific data below:
+          
+          CRITICAL REQUIREMENTS:
+          - Reference their specific interests: ${interests}
+          - Acknowledge their personality traits: ${personality}
+          - Connect to their Life Path ${numerologyData?.lifePath?.number} and Destiny ${numerologyData?.destiny?.number}
+          - Include their ${astrologyData?.sign} sun sign and ${astrologyData?.element} element
+          - Mention their preferred gender: ${seekingGender}
+          - Reference their location/birth city: ${location}
+          
+          Each prediction should be 2-3 sentences and feel uniquely crafted for ${userName}.
+          Format as numbered list: 1., 2., 3., 4., 5.
+          
           ${context}`;
       } else if (packageLevel === 'plus') {
-        userPrompt = `Based on the following profile, generate:
-          1. 5 unique, personalized soulmate predictions
-          2. Location insights about where they might meet their soulmate
-          3. Enhanced astrological analysis of their romantic compatibility
-          Make everything specific to their numbers and signs.
+        userPrompt = `Create comprehensive soulmate analysis incorporating ALL specific user data:
+          
+          SECTION 1: PERSONALIZED PREDICTIONS (5 detailed predictions)
+          - Reference their specific interests: ${interests}
+          - Connect to their Life Path ${numerologyData?.lifePath?.number} traits
+          - Include their ${astrologyData?.sign} characteristics
+          - Mention their relationship goals: ${relationshipGoals}
+          
+          SECTION 2: LOCATION INSIGHTS
+          - Where they'll meet based on their interests in ${interests}
+          - Connection to their birth location: ${location}
+          - ${astrologyData?.element} element influence on meeting places
+          
+          SECTION 3: ENHANCED ASTROLOGICAL COMPATIBILITY
+          - Deep dive into ${astrologyData?.sign} romantic compatibility
+          - How their ${astrologyData?.element} element affects attraction
+          - Connection between their astrology and numerology
+          
+          Make everything specific to ${userName}'s unique profile.
           ${context}`;
       } else if (packageLevel === 'premium') {
-        userPrompt = `Based on the following profile, generate:
-          1. 5 unique, deeply personalized soulmate predictions
-          2. A profound spiritual insight about their soulmate connection (2-3 paragraphs)
-          3. A comprehensive relationship strategy guide including:
-             - Optimal meeting times based on their astrology
-             - Recognition signs specific to their numerology
-             - Approach strategies aligned with their personality
-             - Relationship development advice based on their life path
-          Make everything deeply specific and personalized.
+        userPrompt = `Create the MOST COMPREHENSIVE, PERSONALIZED soulmate reading incorporating EVERY detail:
+          
+          SECTION 1: DEEPLY PERSONALIZED PREDICTIONS (5 detailed predictions)
+          - Weave in their specific personality: ${personality}
+          - Reference their interests/hobbies: ${interests}
+          - Connect Life Path ${numerologyData?.lifePath?.number} with their goals: ${relationshipGoals}
+          - Include ${astrologyData?.sign} traits and ${astrologyData?.element} element
+          - Reference their preferred partner gender: ${seekingGender}
+          
+          SECTION 2: SPIRITUAL SOUL CONNECTION INSIGHT (3 paragraphs)
+          - How their Life Path ${numerologyData?.lifePath?.number} and Destiny ${numerologyData?.destiny?.number} create soul magnetism
+          - Past-life connections through their ${astrologyData?.sign} energy
+          - Specific karmic lessons they'll learn together based on their numerology
+          
+          SECTION 3: COMPREHENSIVE RELATIONSHIP STRATEGY
+          - OPTIMAL MEETING TIMES: Based on ${astrologyData?.sign} seasonal energy and ${astrologyData?.element} element
+          - RECOGNITION SIGNS: Specific to Life Path ${numerologyData?.lifePath?.number} and their personality: ${personality}
+          - APPROACH STRATEGIES: Tailored to their interests: ${interests} and relationship goals: ${relationshipGoals}
+          - RELATIONSHIP DEVELOPMENT: How to nurture connection using their numerology and astrology
+          
+          Every paragraph must reference specific user data - NO GENERIC CONTENT.
+          Make ${userName} feel this was written exclusively for them.
           ${context}`;
       }
       
