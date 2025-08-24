@@ -1,8 +1,5 @@
+import HomePage from './components/HomePage'
+
 export default function Home() {
-  return (
-    <div>
-      <h1>Music Moments</h1>
-      <p>App is working!</p>
-    </div>
-  )
+  return <HomePage />
 }
