@@ -3,14 +3,14 @@
 import React, { useState } from 'react'
 import VoiceSelector from './VoiceSelector-new'
 import SongGenerator from '../lib/song-generation'
-import type { GenerationRequest } from '../lib/song-generation'
+import type { GenerationRequest, SongResult } from '../lib/song-generation'
 
 interface FormData {
   occasion: string
   recipient: string
   relationship: string
   vibe: 'romantic' | 'uplifting' | 'nostalgic' | 'energetic' | 'cinematic'
-  genre: 'ballad' | 'r&b' | 'pop' | 'techno' | 'rock' | 'rap' | 'country'
+  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral'
   story: string
   lyrics: string
   title: string
@@ -19,16 +19,6 @@ interface FormData {
   selectedVoiceCategory: string
 }
 
-interface SongResult {
-  status: 'processing' | 'complete' | 'error'
-  audioUrl?: string
-  audioData?: string
-  lyrics?: string
-  voiceId?: string
-  voiceCategory?: string
-  voiceName?: string
-  error?: string
-}
 
 const initialFormData: FormData = {
   occasion: '',
@@ -312,15 +302,12 @@ export default function HomePage() {
                   className: "relative w-full p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-3xl focus:ring-4 focus:ring-purple-400/30 focus:border-purple-400/60 focus:bg-slate-700/60 text-white text-lg shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-purple-500/20 appearance-none cursor-pointer",
                 value: formData.genre,
                 onChange: (e: React.ChangeEvent<HTMLSelectElement>) => handleInputChange('genre', e.target.value)
-              }, [
-                React.createElement('option', { key: 'pop', value: "pop", className: "bg-slate-800 text-white" }, '🎤 Pop'),
-                React.createElement('option', { key: 'ballad', value: "ballad", className: "bg-slate-800 text-white" }, '💝 Ballad'),
-                React.createElement('option', { key: 'r&b', value: "r&b", className: "bg-slate-800 text-white" }, '🎷 R&B'),
-                React.createElement('option', { key: 'techno', value: "techno", className: "bg-slate-800 text-white" }, '🎛️ Techno'),
-                React.createElement('option', { key: 'rock', value: "rock", className: "bg-slate-800 text-white" }, '🎸 Rock'),
-                React.createElement('option', { key: 'rap', value: "rap", className: "bg-slate-800 text-white" }, '🎤 Rap'),
-                React.createElement('option', { key: 'country', value: "country", className: "bg-slate-800 text-white" }, '🤠 Country')
-                ]),
+               }, [
+                 React.createElement('option', { key: 'pop', value: "pop", className: "bg-slate-800 text-white" }, '🎤 Pop'),
+                 React.createElement('option', { key: 'acoustic', value: "acoustic", className: "bg-slate-800 text-white" }, '🎸 Acoustic'),
+                 React.createElement('option', { key: 'lofi', value: "lofi", className: "bg-slate-800 text-white" }, '🎧 Lo-Fi'),
+                 React.createElement('option', { key: 'orchestral', value: "orchestral", className: "bg-slate-800 text-white" }, '🎼 Orchestral')
+                 ]),
                 React.createElement('div', {
                   key: 'genre-arrow',
                   className: "absolute right-6 top-1/2 transform -translate-y-1/2 pointer-events-none"

@@ -5,6 +5,7 @@ export interface ErrorContext {
   requestId?: string;
   timestamp?: Date;
   metadata?: Record<string, any>;
+  service?: string;
 }
 
 export interface ElevenLabsError extends Error {

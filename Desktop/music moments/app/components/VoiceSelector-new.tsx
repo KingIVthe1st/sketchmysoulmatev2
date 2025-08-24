@@ -93,7 +93,7 @@ export default function VoiceSelector({
         
         if (data.voices && Array.isArray(data.voices)) {
           setAvailableVoices(data.voices)
-          console.log('📊 Sample voices:', data.voices.slice(0, 3).map(v => ({ id: v.voice_id, name: v.name })))
+          console.log('📊 Sample voices:', data.voices.slice(0, 3).map((v: Voice) => ({ id: v.voice_id, name: v.name })))
         } else {
           throw new Error('No voices received from API')
         }
