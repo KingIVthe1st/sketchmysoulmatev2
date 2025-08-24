@@ -42,7 +42,13 @@ export const VoiceSelector: React.FC<VoiceSelectorProps> = ({
     const fetchVoices = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/elevenlabs-voices')
+        const response = await fetch(`/api/elevenlabs-voices?t=${Date.now()}`, {
+          cache: 'no-cache',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        })
         if (response.ok) {
           const data = await response.json()
           console.log('Voices loaded:', data.voices?.length || 0, 'voices')

@@ -82,7 +82,13 @@ export default function VoiceSelector({
         setError(null)
         
         console.log('🎤 Fetching available voices...')
-        const response = await fetch('/api/elevenlabs-voices')
+        const response = await fetch(`/api/elevenlabs-voices?t=${Date.now()}`, {
+          cache: 'no-cache',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        })
         
         if (!response.ok) {
           throw new Error(`Failed to fetch voices: ${response.status}`)
