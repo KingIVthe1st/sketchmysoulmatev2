@@ -1,10 +1,9 @@
 services:
   - type: web
-    name: music-moments-final
+    name: music-moments-working
     runtime: node
-    region: oregon
+    region: oregon  
     plan: free
-    rootDir: src
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
