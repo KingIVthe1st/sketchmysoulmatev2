@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: songgram
+    name: music-moments-final
     runtime: node
     region: oregon
     plan: free
-    buildCommand: ./build.sh
+    buildCommand: chmod +x build.sh && ./build.sh
     startCommand: npm start
     envVars:
       - key: NODE_ENV
