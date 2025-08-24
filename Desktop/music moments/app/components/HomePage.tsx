@@ -10,7 +10,7 @@ interface FormData {
   recipient: string
   relationship: string
   vibe: 'romantic' | 'uplifting' | 'nostalgic' | 'energetic' | 'cinematic'
-  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral'
+  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral' | 'hiphop' | 'ballad' | 'country' | 'rock' | 'rnb' | 'jazz' | 'folk' | 'reggae' | 'electronic' | 'blues' | 'indie'
   story: string
   lyrics: string
   title: string
@@ -306,7 +306,18 @@ export default function HomePage() {
                  React.createElement('option', { key: 'pop', value: "pop", className: "bg-slate-800 text-white" }, '🎤 Pop'),
                  React.createElement('option', { key: 'acoustic', value: "acoustic", className: "bg-slate-800 text-white" }, '🎸 Acoustic'),
                  React.createElement('option', { key: 'lofi', value: "lofi", className: "bg-slate-800 text-white" }, '🎧 Lo-Fi'),
-                 React.createElement('option', { key: 'orchestral', value: "orchestral", className: "bg-slate-800 text-white" }, '🎼 Orchestral')
+                 React.createElement('option', { key: 'orchestral', value: "orchestral", className: "bg-slate-800 text-white" }, '🎼 Orchestral'),
+                 React.createElement('option', { key: 'hiphop', value: "hiphop", className: "bg-slate-800 text-white" }, '🎯 Hip Hop'),
+                 React.createElement('option', { key: 'ballad', value: "ballad", className: "bg-slate-800 text-white" }, '💖 Ballad'),
+                 React.createElement('option', { key: 'country', value: "country", className: "bg-slate-800 text-white" }, '🤠 Country'),
+                 React.createElement('option', { key: 'rock', value: "rock", className: "bg-slate-800 text-white" }, '🎸 Rock'),
+                 React.createElement('option', { key: 'rnb', value: "rnb", className: "bg-slate-800 text-white" }, '✨ R&B'),
+                 React.createElement('option', { key: 'jazz', value: "jazz", className: "bg-slate-800 text-white" }, '🎷 Jazz'),
+                 React.createElement('option', { key: 'folk', value: "folk", className: "bg-slate-800 text-white" }, '🌾 Folk'),
+                 React.createElement('option', { key: 'reggae', value: "reggae", className: "bg-slate-800 text-white" }, '🏝️ Reggae'),
+                 React.createElement('option', { key: 'electronic', value: "electronic", className: "bg-slate-800 text-white" }, '⚡ Electronic'),
+                 React.createElement('option', { key: 'blues', value: "blues", className: "bg-slate-800 text-white" }, '🎺 Blues'),
+                 React.createElement('option', { key: 'indie', value: "indie", className: "bg-slate-800 text-white" }, '🎨 Indie')
                  ]),
                 React.createElement('div', {
                   key: 'genre-arrow',

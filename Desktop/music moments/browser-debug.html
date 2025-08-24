@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend API Debug</title>
+    <style>
+        body { 
+            font-family: monospace; 
+            background: #1a1a1a; 
+            color: #fff; 
+            padding: 20px; 
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 15px; 
+            border: 1px solid #333; 
+            background: #2a2a2a; 
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .warning { color: #fbbf24; }
+        pre { background: #111; padding: 10px; overflow-x: auto; }
+        button { 
+            background: #3b82f6; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <h1>Music Moments API Debug Tool</h1>
+    <p>Testing the voice API endpoint that's supposed to work but shows 404 in frontend</p>
+    
+    <div class="test-section">
+        <h2>Environment Info</h2>
+        <div id="env-info">
+            <p><strong>Current URL:</strong> <span id="current-url"></span></p>
+            <p><strong>User Agent:</strong> <span id="user-agent"></span></p>
+            <p><strong>Cache Status:</strong> <span id="cache-status"></span></p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Network Tests</h2>
+        <button onclick="testAllEndpoints()">Run All Tests</button>
+        <button onclick="clearCache()">Clear Cache & Reload</button>
+        <button onclick="testWithoutCache()">Force No-Cache</button>
+        <div id="test-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Browser Cache Analysis</h2>
+        <button onclick="analyzeCacheHeaders()">Check Cache Headers</button>
+        <div id="cache-analysis"></div>
+    </div>
+
+    <script>
+        // Fill in environment info
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('user-agent').textContent = navigator.userAgent;
+        document.getElementById('cache-status').textContent = 'caches' in window ? 'Supported' : 'Not supported';
+
+        async function log(containerId, message, type = 'info') {
+            const container = document.getElementById(containerId);
+            const timestamp = new Date().toLocaleTimeString();
+            const colorClass = type === 'error' ? 'error' : type === 'success' ? 'success' : type === 'warning' ? 'warning' : '';
+            container.innerHTML += `<p class="${colorClass}">[${timestamp}] ${message}</p>`;
+            container.scrollTop = container.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        async function testEndpoint(url, name, options = {}) {
+            try {
+                console.log(`Testing ${name}: ${url}`);
+                const startTime = Date.now();
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    ...options,
+                    // Add explicit headers to avoid CORS issues
+                    headers: {
+                        'Accept': 'application/json',
+                        ...options.headers
+                    }
+                });
+                
+                const endTime = Date.now();
+                const duration = endTime - startTime;
+                
+                const result = {
+                    name,
+                    url,
+                    status: response.status,
+                    statusText: response.statusText,
+                    ok: response.ok,
+                    duration,
+                    headers: Object.fromEntries(response.headers.entries()),
+                    cached: response.headers.get('x-nextjs-cache') || 'unknown'
+                };
+
+                if (response.ok) {
+                    try {
+                        const data = await response.json();
+                        result.data = {
+                            hasVoices: !!data.voices,
+                            voiceCount: data.voices?.length || 0,
+                            firstVoice: data.voices?.[0]?.name || 'none',
+                            dataSize: JSON.stringify(data).length
+                        };
+                        await log('test-results', 
+                            `✅ ${name}: ${response.status} (${duration}ms) - ${result.data.voiceCount} voices`, 
+                            'success'
+                        );
+                    } catch (parseError) {
+                        const text = await response.text();
+                        result.errorText = text;
+                        await log('test-results', 
+                            `⚠️  ${name}: ${response.status} but JSON parse failed: ${parseError.message}`, 
+                            'warning'
+                        );
+                    }
+                } else {
+                    try {
+                        result.errorText = await response.text();
+                    } catch (e) {
+                        result.errorText = 'Could not read error response';
+                    }
+                    await log('test-results', 
+                        `❌ ${name}: ${response.status} ${response.statusText} - ${result.errorText}`, 
+                        'error'
+                    );
+                }
+                
+                return result;
+            } catch (error) {
+                await log('test-results', 
+                    `🚫 ${name}: Network error - ${error.message}`, 
+                    'error'
+                );
+                return {
+                    name,
+                    url,
+                    error: error.message,
+                    networkError: true
+                };
+            }
+        }
+
+        async function testAllEndpoints() {
+            document.getElementById('test-results').innerHTML = '<h3>Test Results:</h3>';
+            await log('test-results', '🚀 Starting comprehensive API tests...');
+            
+            const tests = [
+                {
+                    name: 'Relative Path (Frontend)',
+                    url: '/api/elevenlabs-voices',
+                    options: {}
+                },
+                {
+                    name: 'Absolute URL',
+                    url: 'http://162.243.172.151/api/elevenlabs-voices',
+                    options: {}
+                },
+                {
+                    name: 'With No-Cache Headers',
+                    url: '/api/elevenlabs-voices',
+                    options: {
+                        cache: 'no-cache',
+                        headers: {
+                            'Cache-Control': 'no-cache',
+                            'Pragma': 'no-cache'
+                        }
+                    }
+                },
+                {
+                    name: 'Force Reload',
+                    url: '/api/elevenlabs-voices',
+                    options: {
+                        cache: 'reload'
+                    }
+                },
+                {
+                    name: 'With Timestamp',
+                    url: `/api/elevenlabs-voices?t=${Date.now()}`,
+                    options: {}
+                }
+            ];
+
+            const results = [];
+            for (const test of tests) {
+                const result = await testEndpoint(test.url, test.name, test.options);
+                results.push(result);
+                // Small delay between tests
+                await new Promise(resolve => setTimeout(resolve, 200));
+            }
+
+            await log('test-results', '✨ All tests completed');
+            
+            // Summary
+            const successful = results.filter(r => r.ok);
+            const failed = results.filter(r => !r.ok && !r.networkError);
+            const networkErrors = results.filter(r => r.networkError);
+            
+            await log('test-results', `📊 Summary: ${successful.length} successful, ${failed.length} failed, ${networkErrors.length} network errors`);
+        }
+
+        async function analyzeCacheHeaders() {
+            document.getElementById('cache-analysis').innerHTML = '<h3>Cache Analysis:</h3>';
+            await log('cache-analysis', '🔍 Analyzing cache behavior...');
+            
+            try {
+                // Test cache behavior
+                const url = '/api/elevenlabs-voices';
+                
+                // First request
+                const firstResponse = await fetch(url);
+                const firstHeaders = Object.fromEntries(firstResponse.headers.entries());
+                
+                // Second request (should be cached)
+                const secondResponse = await fetch(url);
+                const secondHeaders = Object.fromEntries(secondResponse.headers.entries());
+                
+                await log('cache-analysis', 'First request headers:', 'info');
+                await log('cache-analysis', `<pre>${JSON.stringify(firstHeaders, null, 2)}</pre>`, 'info');
+                
+                await log('cache-analysis', 'Second request headers:', 'info');
+                await log('cache-analysis', `<pre>${JSON.stringify(secondHeaders, null, 2)}</pre>`, 'info');
+                
+                // Check if responses are identical
+                const firstText = await firstResponse.clone().text();
+                const secondText = await secondResponse.clone().text();
+                const identical = firstText === secondText;
+                
+                await log('cache-analysis', `Responses identical: ${identical}`, identical ? 'success' : 'warning');
+                
+            } catch (error) {
+                await log('cache-analysis', `Error analyzing cache: ${error.message}`, 'error');
+            }
+        }
+
+        async function clearCache() {
+            await log('test-results', '🧹 Clearing cache and reloading...');
+            
+            if ('serviceWorker' in navigator) {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for (let registration of registrations) {
+                    await registration.unregister();
+                }
+            }
+            
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+            }
+            
+            // Force reload
+            window.location.reload(true);
+        }
+
+        async function testWithoutCache() {
+            document.getElementById('test-results').innerHTML = '<h3>No-Cache Test Results:</h3>';
+            await log('test-results', '🚫 Testing with aggressive cache busting...');
+            
+            const timestamp = Date.now();
+            const randomId = Math.random().toString(36).substring(7);
+            const url = `/api/elevenlabs-voices?nocache=${timestamp}&rand=${randomId}`;
+            
+            await testEndpoint(url, 'Cache-Busted Request', {
+                method: 'GET',
+                cache: 'no-cache',
+                headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache',
+                    'Expires': '0'
+                }
+            });
+        }
+
+        // Auto-run basic test on page load
+        window.addEventListener('load', () => {
+            setTimeout(testAllEndpoints, 1000);
+        });
+    </script>
+</body>
+</html>

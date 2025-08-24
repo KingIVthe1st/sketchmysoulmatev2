@@ -6,7 +6,7 @@ interface GenerationRequest {
   recipient: string
   relationship: string
   vibe: 'romantic' | 'uplifting' | 'nostalgic' | 'energetic' | 'cinematic'
-  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral'
+  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral' | 'hiphop' | 'ballad' | 'country' | 'rock' | 'rnb' | 'jazz' | 'folk' | 'reggae' | 'electronic' | 'blues' | 'indie'
   story: string
   lyrics: string
   title: string
