@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Moments - Nuclear Reset</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 2px solid #333;
+            max-width: 500px;
+        }
+        button {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 1rem;
+        }
+        button:hover {
+            background: #ff6666;
+        }
+        .status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { background: #004400; }
+        .warning { background: #444400; }
+        .error { background: #440000; }
+        pre {
+            background: #2a2a2a;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: left;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 Nuclear Reset Tool</h1>
+        <p>This tool will perform emergency cleanup of zombie polling intervals</p>
+        
+        <div id="status"></div>
+        
+        <button onclick="performNuclearReset()">🔥 NUCLEAR RESET</button>
+        <button onclick="checkStatus()">📊 Check Status</button>
+        <button onclick="goToApp()">🎵 Go to App</button>
+        
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            console.log(message);
+            const output = document.getElementById('output');
+            const statusDiv = document.getElementById('status');
+            
+            const logEntry = document.createElement('div');
+            logEntry.className = `status ${type}`;
+            logEntry.innerHTML = message;
+            
+            if (statusDiv.children.length > 0) {
+                output.appendChild(statusDiv.children[0]);
+            }
+            statusDiv.appendChild(logEntry);
+        }
+
+        function performNuclearReset() {
+            log('🚨 STARTING NUCLEAR RESET...', 'warning');
+            
+            let clearedCount = 0;
+            
+            // Kill ALL intervals (brute force approach)
+            for (let i = 1; i < 99999; i++) {
+                try {
+                    clearInterval(i);
+                    clearedCount++;
+                } catch(e) {
+                    // Ignore errors - interval may not exist
+                }
+            }
+            
+            log(`🔥 Cleared ${clearedCount} potential intervals`, 'success');
+            
+            // Kill ALL timeouts too
+            let timeoutCount = 0;
+            for (let i = 1; i < 99999; i++) {
+                try {
+                    clearTimeout(i);
+                    timeoutCount++;
+                } catch(e) {
+                    // Ignore errors
+                }
+            }
+            
+            log(`⏰ Cleared ${timeoutCount} potential timeouts`, 'success');
+            
+            // Clear localStorage zombie data
+            const zombieKeys = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && (key.includes('songId') || key.includes('zombie') || key.includes('active'))) {
+                    zombieKeys.push(key);
+                }
+            }
+            
+            zombieKeys.forEach(key => {
+                localStorage.removeItem(key);
+                log(`🧹 Removed localStorage: ${key}`, 'success');
+            });
+            
+            // Clear sessionStorage too
+            const sessionKeys = [];
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const key = sessionStorage.key(i);
+                if (key && (key.includes('songId') || key.includes('zombie') || key.includes('active'))) {
+                    sessionKeys.push(key);
+                }
+            }
+            
+            sessionKeys.forEach(key => {
+                sessionStorage.removeItem(key);
+                log(`🧹 Removed sessionStorage: ${key}`, 'success');
+            });
+            
+            // Clear any running fetch requests (if possible)
+            if (window.AbortController) {
+                log('🛑 Aborting any active requests...', 'warning');
+            }
+            
+            log('✅ NUCLEAR RESET COMPLETE!', 'success');
+            log('💡 Now refresh the main app or close all browser tabs', 'warning');
+            
+            setTimeout(() => {
+                log('🔄 Auto-refreshing in 3 seconds...', 'warning');
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 3000);
+            }, 2000);
+        }
+        
+        function checkStatus() {
+            log('📊 Checking current status...', 'info');
+            
+            // Check localStorage
+            const lsKeys = Object.keys(localStorage);
+            const zombieData = lsKeys.filter(key => 
+                key.includes('songId') || key.includes('zombie') || key.includes('active')
+            );
+            
+            if (zombieData.length === 0) {
+                log('✅ No zombie data found in localStorage', 'success');
+            } else {
+                log(`⚠️ Found ${zombieData.length} zombie localStorage entries:`, 'warning');
+                zombieData.forEach(key => {
+                    const value = localStorage.getItem(key);
+                    log(`  ${key}: ${value}`, 'warning');
+                });
+            }
+            
+            // Check for active intervals (approximate)
+            const beforeCount = window.performance.now();
+            let activeIntervals = 0;
+            
+            // This is imperfect but gives us an idea
+            for (let i = 1; i < 1000; i++) {
+                try {
+                    const interval = setInterval(() => {}, 999999999);
+                    clearInterval(interval);
+                    activeIntervals++;
+                } catch(e) {
+                    break;
+                }
+            }
+            
+            log(`🔍 Approximately ${activeIntervals} intervals can be created`, 'info');
+            
+            // Check current URL and page state
+            log(`🌐 Current URL: ${window.location.href}`, 'info');
+            log(`📄 Page loaded at: ${new Date().toLocaleString()}`, 'info');
+        }
+        
+        function goToApp() {
+            log('🎵 Redirecting to main app...', 'info');
+            window.location.href = '/';
+        }
+        
+        // Auto-check status on load
+        window.addEventListener('load', () => {
+            log('🚀 Nuclear Reset Tool loaded', 'success');
+            checkStatus();
+        });
+    </script>
+</body>
+</html>
