@@ -4,7 +4,8 @@ services:
     runtime: node
     region: oregon
     plan: free
-    buildCommand: chmod +x build.sh && ./build.sh
+    rootDir: src
+    buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
