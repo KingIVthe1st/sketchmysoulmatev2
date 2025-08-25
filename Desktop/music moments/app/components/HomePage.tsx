@@ -533,13 +533,17 @@ export default function HomePage() {
         key: 'subtitle',
         className: "text-mobile-2xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 xs:mb-5 sm:mb-6 text-contrast"
       }, 'Your masterpiece is ready!'),
-      (songResult.audioUrl || songResult.audioData) && React.createElement('div', {
+      (songResult.audioUrl || songResult.audioData || (songResult as any).songId) && React.createElement('div', {
         key: 'audio',
         className: "bg-white/10 backdrop-blur-xl rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 xs:mb-7 sm:mb-8 mobile-optimized"
       }, React.createElement('audio', {
         controls: true,
         className: "w-full mb-2 xs:mb-3 sm:mb-4 audio-player",
-        src: songResult.audioUrl || (songResult.audioData ? `data:audio/mp3;base64,${songResult.audioData}` : `/api/audio?songId=${(songResult as any).songId || ""}`),
+        src: songResult.audioData 
+          ? `data:audio/mpeg;base64,${songResult.audioData}` 
+          : songResult.audioUrl && !songResult.audioUrl.includes('elevenlabs') 
+            ? songResult.audioUrl 
+            : `/api/audio?songId=${(songResult as any).songId || ""}`,
         preload: "metadata",
         controlsList: "nodownload noremoteplayback",
         style: { minHeight: '54px' }
