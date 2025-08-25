@@ -1,0 +1,83 @@
+{
+  "workflow_id": "songgram_production_fix",
+  "timestamp": "2025-08-25T00:00:00Z",
+  "status": "completed",
+  "objective": "Fix production SongGram application timeout errors and API failures",
+  "server_details": {
+    "ip": "162.243.172.151",
+    "path": "/var/www/music-moments",
+    "ssh_key": "~/.ssh/digitalocean_droplet"
+  },
+  "tasks": [
+    {
+      "id": "task_001",
+      "name": "Server Status Assessment",
+      "agent": "bugsquash-qa",
+      "status": "pending",
+      "priority": "critical",
+      "description": "Check server logs, process status, and system resources",
+      "dependencies": [],
+      "deliverables": ["server_status_report.md", "error_log_analysis.md"]
+    },
+    {
+      "id": "task_002", 
+      "name": "Frontend Error Analysis",
+      "agent": "ui-maestro",
+      "status": "pending",
+      "priority": "high",
+      "description": "Analyze browser console errors, missing resources, and client-side failures",
+      "dependencies": [],
+      "deliverables": ["frontend_error_report.md", "missing_resources_list.md"]
+    },
+    {
+      "id": "task_003",
+      "name": "API Integration Verification", 
+      "agent": "codesmith-backend",
+      "status": "pending",
+      "priority": "critical",
+      "description": "Verify ElevenLabs API integration, environment variables, and backend endpoints",
+      "dependencies": ["task_001"],
+      "deliverables": ["api_health_report.md", "env_config_audit.md"]
+    },
+    {
+      "id": "task_004",
+      "name": "Configuration Fix Implementation",
+      "agent": "codesmith-backend", 
+      "status": "pending",
+      "priority": "high",
+      "description": "Fix missing environment variables and configuration issues",
+      "dependencies": ["task_003"],
+      "deliverables": ["config_fixes.patch", "deployment_updates.md"]
+    },
+    {
+      "id": "task_005",
+      "name": "Resource Restoration",
+      "agent": "ui-maestro",
+      "status": "pending", 
+      "priority": "medium",
+      "description": "Fix missing frontend resources and 404 errors",
+      "dependencies": ["task_002"],
+      "deliverables": ["resource_fixes.patch", "asset_deployment.md"]
+    },
+    {
+      "id": "task_006",
+      "name": "End-to-End Testing",
+      "agent": "bugsquash-qa",
+      "status": "pending",
+      "priority": "high",
+      "description": "Test complete song generation flow with real API calls",
+      "dependencies": ["task_004", "task_005"],
+      "deliverables": ["e2e_test_results.md", "performance_metrics.md"]
+    },
+    {
+      "id": "task_007",
+      "name": "Production Optimization",
+      "agent": "turbotune-optimizer",
+      "status": "pending",
+      "priority": "medium", 
+      "description": "Optimize performance and implement monitoring",
+      "dependencies": ["task_006"],
+      "deliverables": ["optimization_report.md", "monitoring_setup.md"]
+    }
+  ]
+}
