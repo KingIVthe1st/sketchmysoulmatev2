@@ -541,9 +541,11 @@ export default function HomePage() {
         className: "w-full mb-2 xs:mb-3 sm:mb-4 audio-player",
         src: songResult.audioData 
           ? `data:audio/mpeg;base64,${songResult.audioData}` 
-          : songResult.audioUrl && !songResult.audioUrl.includes('elevenlabs') 
+          : songResult.audioUrl && songResult.audioUrl !== '' && !songResult.audioUrl.includes('elevenlabs') 
             ? songResult.audioUrl 
-            : `/api/audio?songId=${(songResult as any).songId || ""}`,
+            : songResult.songId 
+              ? `/api/audio?songId=${songResult.songId}` 
+              : '#',
         preload: "metadata",
         controlsList: "nodownload noremoteplayback",
         style: { minHeight: '54px' }

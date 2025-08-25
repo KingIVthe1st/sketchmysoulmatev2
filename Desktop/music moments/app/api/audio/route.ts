@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const songId = searchParams.get('songId')
     
-    if (!songId) {
+    if (!songId || songId === '') {
       return NextResponse.json({ error: 'Song ID is required' }, { status: 400 })
     }
     
@@ -15,10 +15,40 @@ export async function GET(request: NextRequest) {
     
     // Get song request from global storage
     const songRequest = (global as any).songRequests?.get(songId)
+    console.log(`📊 [AUDIO PROXY] Song request found:`, songRequest ? 'Yes' : 'No')
+    
+    if (songRequest) {
+      console.log(`📊 [AUDIO PROXY] Audio data available:`, !!songRequest.audioData)
+      console.log(`📊 [AUDIO PROXY] Audio URL available:`, !!songRequest.audioUrl)
+    }
     
     if (!songRequest) {
-      console.error(`❌ [AUDIO PROXY] Song not found: ${songId}`)
-      return NextResponse.json({ error: 'Song not found' }, { status: 404 })
+      console.error(`❌ [AUDIO PROXY] Song not found in global storage: ${songId}`)
+      
+      // Try to fetch from status endpoint as fallback
+      try {
+        console.log(`🔄 [AUDIO PROXY] Attempting to fetch from status endpoint...`)
+        const statusResponse = await fetch(`${request.nextUrl.origin}/api/status?songId=${songId}`)
+        if (statusResponse.ok) {
+          const statusData = await statusResponse.json()
+          if (statusData.audioData) {
+            console.log(`✅ [AUDIO PROXY] Found audio data via status endpoint`)
+            const audioBuffer = Buffer.from(statusData.audioData, 'base64')
+            return new NextResponse(audioBuffer, {
+              headers: {
+                'Content-Type': 'audio/mpeg',
+                'Content-Length': audioBuffer.length.toString(),
+                'Cache-Control': 'public, max-age=3600',
+                'Accept-Ranges': 'bytes'
+              }
+            })
+          }
+        }
+      } catch (fallbackError) {
+        console.log(`❌ [AUDIO PROXY] Status endpoint fallback failed:`, fallbackError)
+      }
+      
+      return NextResponse.json({ error: 'Song not found or audio not available' }, { status: 404 })
     }
     
     // Handle base64 audio data
