@@ -539,7 +539,7 @@ export default function HomePage() {
       }, React.createElement('audio', {
         controls: true,
         className: "w-full mb-2 xs:mb-3 sm:mb-4 audio-player",
-        src: songResult.audioUrl || `data:audio/mp3;base64,${songResult.audioData}`,
+        src: songResult.audioUrl || (songResult.audioData ? `data:audio/mp3;base64,${songResult.audioData}` : `/api/audio?songId=${(songResult as any).songId || ""}`),
         preload: "metadata",
         controlsList: "nodownload noremoteplayback",
         style: { minHeight: '54px' }
