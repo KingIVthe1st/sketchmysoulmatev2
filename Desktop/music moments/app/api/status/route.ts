@@ -38,17 +38,28 @@ export async function GET(request: NextRequest) {
         lyrics: songData.lyrics || null,
         voiceId: songData.selectedVoiceId,
         voiceCategory: songData.selectedVoiceCategory,
-        voiceName: songData.voiceName || null
+        voiceName: songData.voiceName || null,
+        title: `${songData.genre} song for ${songData.recipient}`,
+        description: `A personalized ${songData.genre} song celebrating ${songData.occasion}`
       })
     }
     
-    // Check if processing has timed out (more than 30 seconds)
+    // Check if song generation had an error
+    if (songData.status === 'error') {
+      console.log(`❌ Song generation failed: ${songId} - ${songData.error}`)
+      return NextResponse.json({
+        status: 'error',
+        error: songData.error || 'Song generation failed'
+      })
+    }
+    
+    // Check if processing has timed out (more than 3 minutes for music generation)
     const processingTime = Date.now() - songData.submittedAt
-    if (processingTime > 30000) {
+    if (processingTime > 180000) {
       console.log(`⏰ Song timed out: ${songId}`)
       return NextResponse.json({
         status: 'error',
-        error: 'Song generation timed out. Please try again.'
+        error: 'Song generation timed out. Music generation can take up to 3 minutes. Please try again.'
       })
     }
     

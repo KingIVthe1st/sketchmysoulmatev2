@@ -10,7 +10,7 @@ interface FormData {
   recipient: string
   relationship: string
   vibe: 'romantic' | 'uplifting' | 'nostalgic' | 'energetic' | 'cinematic'
-  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral' | 'hiphop' | 'ballad' | 'country' | 'rock' | 'rnb' | 'jazz' | 'folk' | 'reggae' | 'electronic' | 'blues' | 'indie'
+  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral' | 'hiphop' | 'ballad' | 'country' | 'rock' | 'rnb' | 'jazz' | 'folk' | 'reggae' | 'electronic' | 'blues' | 'indie' | 'oldschool-rap' | 'trap' | 'afrobeats' | 'latin' | 'gospel'
   story: string
   lyrics: string
   title: string
@@ -77,7 +77,17 @@ export default function HomePage() {
       }
 
     } catch (err: any) {
-      setError(err.message || 'Failed to generate song')
+      const errorMessage = err.message || 'Failed to generate song'
+      
+      // Handle timeout errors with more helpful messaging
+      if (errorMessage.includes('3+ minutes') || errorMessage.includes('longer than expected')) {
+        setError('Song generation timed out after 3 minutes. This may be due to high server load. Please try again in a few minutes.')
+      } else if (errorMessage.includes('zombie')) {
+        setError('System detected runaway processes. Please refresh the page and try again.')
+      } else {
+        setError(errorMessage)
+      }
+      
       setCurrentStep('form')
       setProgressMessage('')
     } finally {
@@ -110,7 +120,7 @@ export default function HomePage() {
 
   if (currentStep === 'form') {
     return React.createElement('div', {
-      className: "min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 text-white relative overflow-hidden"
+      className: "min-h-screen min-h-[-webkit-fill-available] bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 text-white relative overflow-hidden safe-area-all no-bounce mobile-optimized"
     }, [
       React.createElement('div', {
         key: 'bg1',
@@ -134,19 +144,19 @@ export default function HomePage() {
       })),
       React.createElement('div', {
         key: 'container',
-        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 relative z-10 flex flex-col items-center min-h-screen justify-center"
+        className: "container mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 py-4 xs:py-6 sm:py-8 lg:py-12 relative z-10 flex flex-col items-center min-h-screen min-h-[-webkit-fill-available] justify-center"
       }, [
         React.createElement('div', {
           key: 'header',
-          className: "text-center mb-12 sm:mb-16"
+          className: "text-center mb-6 xs:mb-8 sm:mb-12 lg:mb-16 touch-spacing-md"
         }, [
           React.createElement('h1', {
             key: 'title',
-            className: "text-5xl sm:text-6xl lg:text-7xl font-black bg-gradient-to-r from-white via-indigo-100 to-purple-100 bg-clip-text text-transparent mb-4 sm:mb-6 drop-shadow-2xl"
+            className: "text-mobile-4xl xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black bg-gradient-to-r from-white via-indigo-100 to-purple-100 bg-clip-text text-transparent mb-2 xs:mb-3 sm:mb-4 lg:mb-6 drop-shadow-2xl text-contrast leading-tight"
           }, 'SongGram'),
           React.createElement('p', {
             key: 'subtitle',
-            className: "text-lg sm:text-xl lg:text-2xl text-slate-300 font-light leading-relaxed max-w-3xl mx-auto px-4"
+            className: "text-mobile-lg xs:text-base sm:text-lg lg:text-xl xl:text-2xl text-slate-300 font-light leading-relaxed max-w-3xl mx-auto px-2 xs:px-3 sm:px-4 text-contrast"
           }, [
             'Transform your memories into ',
             React.createElement('span', {
@@ -157,12 +167,12 @@ export default function HomePage() {
         ]),
         error && React.createElement('div', {
           key: 'error',
-          className: "max-w-2xl mx-auto mb-8 p-4 bg-red-500/10 backdrop-blur-sm border border-red-400/30 rounded-2xl"
+          className: "max-w-2xl mx-auto mb-4 xs:mb-6 sm:mb-8 p-3 xs:p-4 bg-red-500/10 backdrop-blur-sm border border-red-400/30 rounded-xl xs:rounded-2xl touch-padding-sm"
         }, React.createElement('div', {
-          className: "flex items-center"
+          className: "flex items-center gap-2 xs:gap-3"
         }, [
-          React.createElement('span', { key: 'icon', className: "text-2xl mr-3" }, '⚠️'),
-          React.createElement('p', { key: 'message', className: "text-red-200 font-medium" }, error)
+          React.createElement('span', { key: 'icon', className: "text-lg xs:text-xl sm:text-2xl flex-shrink-0" }, '⚠️'),
+          React.createElement('p', { key: 'message', className: "text-red-200 font-medium text-mobile-base xs:text-sm sm:text-base leading-relaxed" }, error)
         ])),
         React.createElement('div', {
           key: 'form',
@@ -174,7 +184,7 @@ export default function HomePage() {
           }),
           React.createElement('div', {
             key: 'form-container',
-            className: "relative bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-3xl rounded-[2rem] border-2 border-white/20 shadow-[0_20px_70px_rgba(0,0,0,0.3)] p-8 sm:p-10 lg:p-12 overflow-hidden"
+            className: "relative bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-3xl rounded-xl xs:rounded-2xl sm:rounded-[2rem] border-2 border-white/20 shadow-[0_20px_70px_rgba(0,0,0,0.3)] p-4 xs:p-6 sm:p-8 lg:p-10 xl:p-12 overflow-hidden touch-padding-md"
           }, [
             React.createElement('div', {
               key: 'form-shimmer',
@@ -182,16 +192,16 @@ export default function HomePage() {
             }),
             React.createElement('h2', {
             key: 'form-title',
-            className: "text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-white via-indigo-100 to-purple-100 bg-clip-text text-transparent mb-6 sm:mb-8 text-center"
+            className: "text-mobile-2xl xs:text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-black bg-gradient-to-r from-white via-indigo-100 to-purple-100 bg-clip-text text-transparent mb-4 xs:mb-5 sm:mb-6 lg:mb-8 text-center text-contrast leading-tight"
           }, 'Create Your Masterpiece'),
           React.createElement('div', {
             key: 'form-fields',
-            className: "space-y-6 sm:space-y-8"
+            className: "space-y-4 xs:space-y-5 sm:space-y-6 lg:space-y-8"
           }, [
             React.createElement('div', { key: 'occasion' }, [
               React.createElement('label', {
                 key: 'occasion-label',
-                className: "block text-lg font-semibold bg-gradient-to-r from-indigo-200 to-purple-200 bg-clip-text text-transparent mb-6"
+                className: "block text-mobile-lg xs:text-base sm:text-lg font-semibold bg-gradient-to-r from-indigo-200 to-purple-200 bg-clip-text text-transparent mb-3 xs:mb-4 sm:mb-6 text-contrast"
               }, "🎉 What's the occasion?"),
               React.createElement('div', {
                 key: 'occasion-wrapper',
@@ -203,7 +213,7 @@ export default function HomePage() {
                 }),
                 React.createElement('select', {
                   key: 'occasion-select',
-                  className: "relative w-full p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-3xl focus:ring-4 focus:ring-indigo-400/30 focus:border-indigo-400/60 focus:bg-slate-700/60 text-white text-lg shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-indigo-500/20 appearance-none cursor-pointer",
+                  className: "relative w-full p-3 xs:p-4 sm:p-5 lg:p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-xl xs:rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-indigo-400/30 focus:border-indigo-400/60 focus:bg-slate-700/60 text-white text-mobile-lg xs:text-base sm:text-lg shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-indigo-500/20 appearance-none cursor-pointer mobile-optimized",
                 value: formData.occasion,
                 onChange: (e: React.ChangeEvent<HTMLSelectElement>) => handleInputChange('occasion', e.target.value)
               }, [
@@ -235,12 +245,12 @@ export default function HomePage() {
             ]),
             React.createElement('div', {
               key: 'names',
-              className: "grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
+              className: "grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4 sm:gap-6 lg:gap-8"
             }, [
               React.createElement('div', { key: 'recipient' }, [
                 React.createElement('label', {
                   key: 'recipient-label',
-                  className: "block text-lg font-semibold bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent mb-6"
+                  className: "block text-mobile-lg xs:text-base sm:text-lg font-semibold bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent mb-3 xs:mb-4 sm:mb-6 text-contrast"
                 }, "💫 Who's this for?"),
                 React.createElement('div', {
                   key: 'recipient-wrapper',
@@ -253,7 +263,7 @@ export default function HomePage() {
                   React.createElement('input', {
                     key: 'recipient-input',
                     type: "text",
-                    className: "relative w-full p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-3xl focus:ring-4 focus:ring-blue-400/30 focus:border-blue-400/60 focus:bg-slate-700/60 text-white text-lg placeholder-slate-300 shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-blue-500/20",
+                    className: "relative w-full p-3 xs:p-4 sm:p-5 lg:p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-xl xs:rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-blue-400/30 focus:border-blue-400/60 focus:bg-slate-700/60 text-white text-mobile-lg xs:text-base sm:text-lg placeholder-slate-300 shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-blue-500/20 mobile-optimized",
                   placeholder: "Sarah, Mom, John, Alex...",
                   value: formData.recipient,
                   onChange: (e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('recipient', e.target.value)
@@ -263,7 +273,7 @@ export default function HomePage() {
               React.createElement('div', { key: 'relationship' }, [
                 React.createElement('label', {
                   key: 'relationship-label',
-                  className: "block text-lg font-semibold bg-gradient-to-r from-pink-200 to-rose-200 bg-clip-text text-transparent mb-6"
+                  className: "block text-mobile-lg xs:text-base sm:text-lg font-semibold bg-gradient-to-r from-pink-200 to-rose-200 bg-clip-text text-transparent mb-3 xs:mb-4 sm:mb-6 text-contrast"
                 }, "❤️ Your relationship"),
                 React.createElement('div', {
                   key: 'relationship-wrapper',
@@ -276,7 +286,7 @@ export default function HomePage() {
                   React.createElement('input', {
                     key: 'relationship-input',
                     type: "text",
-                    className: "relative w-full p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-3xl focus:ring-4 focus:ring-pink-400/30 focus:border-pink-400/60 focus:bg-slate-700/60 text-white text-lg placeholder-slate-300 shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-pink-500/20",
+                    className: "relative w-full p-3 xs:p-4 sm:p-5 lg:p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-xl xs:rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-pink-400/30 focus:border-pink-400/60 focus:bg-slate-700/60 text-white text-mobile-lg xs:text-base sm:text-lg placeholder-slate-300 shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-pink-500/20 mobile-optimized",
                   placeholder: "wife, friend, daughter, partner...",
                   value: formData.relationship,
                   onChange: (e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('relationship', e.target.value)
@@ -317,7 +327,12 @@ export default function HomePage() {
                  React.createElement('option', { key: 'reggae', value: "reggae", className: "bg-slate-800 text-white" }, '🏝️ Reggae'),
                  React.createElement('option', { key: 'electronic', value: "electronic", className: "bg-slate-800 text-white" }, '⚡ Electronic'),
                  React.createElement('option', { key: 'blues', value: "blues", className: "bg-slate-800 text-white" }, '🎺 Blues'),
-                 React.createElement('option', { key: 'indie', value: "indie", className: "bg-slate-800 text-white" }, '🎨 Indie')
+                 React.createElement('option', { key: 'indie', value: "indie", className: "bg-slate-800 text-white" }, '🎨 Indie'),
+                 React.createElement('option', { key: 'oldschool-rap', value: "oldschool-rap", className: "bg-slate-800 text-white" }, '📻 Old School Rap'),
+                 React.createElement('option', { key: 'trap', value: "trap", className: "bg-slate-800 text-white" }, '🔥 Trap'),
+                 React.createElement('option', { key: 'afrobeats', value: "afrobeats", className: "bg-slate-800 text-white" }, '🌍 Afrobeats'),
+                 React.createElement('option', { key: 'latin', value: "latin", className: "bg-slate-800 text-white" }, '🎵 Latin'),
+                 React.createElement('option', { key: 'gospel', value: "gospel", className: "bg-slate-800 text-white" }, '🙏 Gospel')
                  ]),
                 React.createElement('div', {
                   key: 'genre-arrow',
@@ -377,7 +392,7 @@ export default function HomePage() {
                 }),
                 React.createElement('textarea', {
                   key: 'story-textarea',
-                  className: "relative w-full h-40 sm:h-48 p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-3xl focus:ring-4 focus:ring-amber-400/30 focus:border-amber-400/60 focus:bg-slate-700/60 text-white text-base sm:text-lg placeholder-slate-300 resize-none shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-amber-500/20 leading-relaxed",
+                  className: "relative w-full h-32 xs:h-36 sm:h-40 lg:h-48 p-3 xs:p-4 sm:p-5 lg:p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-xl xs:rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-amber-400/30 focus:border-amber-400/60 focus:bg-slate-700/60 text-white text-mobile-base xs:text-sm sm:text-base lg:text-lg placeholder-slate-300 resize-none shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-amber-500/20 leading-relaxed mobile-optimized",
                   placeholder: "Tell us about this special moment, person, or memory that means so much to you. The more heartfelt details you share, the more personalized your song will be...",
                   value: formData.story,
                   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => handleInputChange('story', e.target.value),
@@ -399,7 +414,7 @@ export default function HomePage() {
             ]),
             React.createElement('div', {
               key: 'submit',
-              className: "pt-12"
+              className: "pt-6 xs:pt-8 sm:pt-10 lg:pt-12"
             }, React.createElement('div', {
               className: "relative group"
             }, [
@@ -411,9 +426,9 @@ export default function HomePage() {
                 key: 'submit-button',
                 onClick: handleGenerate,
                 disabled: !isFormValid || isGenerating,
-                className: `relative w-full py-6 sm:py-8 px-10 sm:px-12 rounded-[2rem] font-black text-lg sm:text-xl lg:text-2xl transition-all duration-700 transform ${
+                className: `relative w-full py-4 xs:py-5 sm:py-6 lg:py-8 px-6 xs:px-8 sm:px-10 lg:px-12 rounded-xl xs:rounded-2xl sm:rounded-[2rem] font-black text-mobile-lg xs:text-lg sm:text-xl lg:text-2xl transition-all duration-700 transform mobile-optimized ${
                   isFormValid && !isGenerating
-                    ? 'bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 text-white shadow-2xl hover:scale-[1.02] hover:shadow-purple-500/40 active:scale-[0.98] overflow-hidden'
+                    ? 'bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 text-white shadow-2xl hover:scale-[1.02] hover:shadow-purple-500/40 active:scale-[0.98] overflow-hidden touch-action-manipulation'
                     : 'bg-gradient-to-br from-slate-800/60 to-slate-900/60 text-slate-400 cursor-not-allowed border-2 border-white/10'
                 }`
               }, [
@@ -446,64 +461,116 @@ export default function HomePage() {
 
   if (currentStep === 'generating') {
     return React.createElement('div', {
-      className: "min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex items-center justify-center"
+      className: "min-h-screen min-h-[-webkit-fill-available] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex items-center justify-center px-3 xs:px-4 sm:px-6 safe-area-all no-bounce mobile-optimized"
     }, React.createElement('div', {
-      className: "text-center"
+      className: "text-center max-w-2xl mx-auto touch-padding-md"
     }, [
       React.createElement('h1', {
         key: 'title',
-        className: "text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent mb-4"
+        className: "text-mobile-4xl xs:text-3xl sm:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent mb-4 xs:mb-5 sm:mb-6 text-contrast"
       }, 'SongGram'),
       React.createElement('h2', {
         key: 'subtitle',
-        className: "text-4xl font-bold mb-6"
+        className: "text-mobile-xl xs:text-xl sm:text-2xl lg:text-4xl font-bold mb-6 xs:mb-7 sm:mb-8 text-contrast"
       }, 'Crafting your masterpiece...'),
-      React.createElement('p', {
-        key: 'progress',
-        className: "text-2xl text-gray-200 mb-4"
-      }, progressMessage || 'AI is composing your personalized song')
+      React.createElement('div', {
+        key: 'progress-container',
+        className: "bg-white/10 backdrop-blur-xl rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 lg:p-8 mb-6 xs:mb-7 sm:mb-8 mobile-optimized"
+      }, [
+        React.createElement('div', {
+          key: 'spinner',
+          className: "w-16 h-16 mx-auto mb-6"
+        }, React.createElement('div', {
+          className: "w-full h-full border-4 border-purple-300/30 border-t-purple-300 rounded-full animate-spin"
+        })),
+        React.createElement('p', {
+          key: 'progress',
+          className: "text-lg sm:text-xl text-gray-200 mb-4 leading-relaxed"
+        }, progressMessage || 'AI is composing your personalized song'),
+        React.createElement('div', {
+          key: 'timing-info',
+          className: "text-sm text-purple-200 bg-purple-900/30 rounded-xl p-4 border border-purple-400/20"
+        }, [
+          React.createElement('p', {
+            key: 'timing-text',
+            className: "flex items-center justify-center gap-2"
+          }, [
+            React.createElement('span', { key: 'clock', className: "text-base" }, '⏱️'),
+            React.createElement('span', { key: 'time' }, 'Typical generation time: 45-90 seconds')
+          ])
+        ])
+      ]),
+      React.createElement('div', {
+        key: 'tips',
+        className: "text-sm text-gray-400 space-y-2"
+      }, [
+        React.createElement('p', {
+          key: 'tip1'
+        }, '🎵 Your AI composer is working on lyrics, melody, and vocal performance'),
+        React.createElement('p', {
+          key: 'tip2'
+        }, '🎤 Creating personalized vocals with your selected voice'),
+        React.createElement('p', {
+          key: 'tip3'
+        }, '✨ Please keep this tab open while your song generates')
+      ])
     ]))
   }
 
   if (currentStep === 'complete' && songResult) {
     return React.createElement('div', {
-      className: "min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white"
+      className: "min-h-screen min-h-[-webkit-fill-available] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white safe-area-all no-bounce mobile-optimized"
     }, React.createElement('div', {
-      className: "container mx-auto px-4 py-8"
+      className: "container mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 sm:py-8"
     }, React.createElement('div', {
-      className: "max-w-4xl mx-auto text-center"
+      className: "max-w-4xl mx-auto text-center touch-padding-md"
     }, [
       React.createElement('h1', {
         key: 'title',
-        className: "text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent mb-4"
+        className: "text-mobile-4xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent mb-3 xs:mb-4 text-contrast"
       }, 'SongGram'),
       React.createElement('h2', {
         key: 'subtitle',
-        className: "text-4xl font-bold mb-6"
+        className: "text-mobile-2xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 xs:mb-5 sm:mb-6 text-contrast"
       }, 'Your masterpiece is ready!'),
       (songResult.audioUrl || songResult.audioData) && React.createElement('div', {
         key: 'audio',
-        className: "bg-white/10 backdrop-blur-xl rounded-3xl p-8 mb-8"
+        className: "bg-white/10 backdrop-blur-xl rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 xs:mb-7 sm:mb-8 mobile-optimized"
       }, React.createElement('audio', {
         controls: true,
-        className: "w-full mb-4",
-        src: songResult.audioUrl || `data:audio/mp3;base64,${songResult.audioData}`
+        className: "w-full mb-2 xs:mb-3 sm:mb-4 audio-player",
+        src: songResult.audioUrl || `data:audio/mp3;base64,${songResult.audioData}`,
+        preload: "metadata",
+        controlsList: "nodownload noremoteplayback",
+        style: { minHeight: '54px' }
       })),
       React.createElement('div', {
         key: 'actions',
-        className: "flex gap-4 justify-center"
+        className: "flex flex-col xs:flex-row gap-3 xs:gap-4 justify-center items-center max-w-md mx-auto"
       }, [
         React.createElement('button', {
           key: 'reset',
           onClick: resetForm,
-          className: "py-4 px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105"
+          className: "w-full xs:w-auto py-3 xs:py-4 px-6 xs:px-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 active:scale-95 rounded-xl xs:rounded-2xl font-bold text-mobile-base xs:text-base sm:text-lg transition-all duration-300 hover:scale-105 mobile-optimized touch-action-manipulation"
         }, 'Create Another SongGram'),
-        songResult.audioUrl && React.createElement('a', {
+        songResult.audioUrl ? React.createElement('a', {
           key: 'download',
           href: songResult.audioUrl,
           download: `songgram-for-${formData.recipient}.mp3`,
-          className: "py-4 px-8 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105"
-        }, 'Download Song')
+          className: "w-full xs:w-auto py-3 xs:py-4 px-6 xs:px-8 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 active:scale-95 rounded-xl xs:rounded-2xl font-bold text-mobile-base xs:text-base sm:text-lg transition-all duration-300 hover:scale-105 mobile-optimized touch-action-manipulation text-center no-underline"
+        }, '📥 Download Song') : React.createElement('div', {
+          key: 'demo-message',
+          className: "py-4 px-8 bg-gradient-to-r from-slate-600 to-slate-700 rounded-2xl text-center max-w-md mx-auto"
+        }, [
+          React.createElement('h3', {
+            key: 'demo-title',
+            className: "font-bold text-lg mb-2"
+          }, '🎵 Demo Mode'),
+          React.createElement('p', {
+            key: 'demo-text',
+            className: "text-sm text-slate-200"
+          }, songResult.audioMessage || 'Song generation completed! In production mode, you would receive a downloadable MP3 file.')
+        ])
       ])
     ])))
   }

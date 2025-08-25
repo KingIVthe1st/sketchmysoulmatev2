@@ -7,7 +7,7 @@ interface GenerationRequest {
   recipient: string
   relationship: string
   vibe: 'romantic' | 'uplifting' | 'nostalgic' | 'energetic' | 'cinematic'
-  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral' | 'hiphop' | 'ballad' | 'country' | 'rock' | 'rnb' | 'jazz' | 'folk' | 'reggae' | 'electronic' | 'blues' | 'indie'
+  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral' | 'hiphop' | 'ballad' | 'country' | 'rock' | 'rnb' | 'jazz' | 'folk' | 'reggae' | 'electronic' | 'blues' | 'indie' | 'oldschool-rap' | 'trap' | 'afrobeats' | 'latin' | 'gospel'
   story: string
   selectedVoiceId: string
   selectedVoiceCategory: string
@@ -33,7 +33,12 @@ function createIntelligentPrompt(formData: GenerationRequest): string {
     reggae: "laid-back rhythm, caribbean influence, positive vibes, social consciousness",
     electronic: "synthesized sounds, digital production, futuristic textures, dance beats",
     blues: "emotional depth, guitar solos, call-and-response, life struggles and triumphs",
-    indie: "artistic expression, unique sound, creative freedom, alternative approach"
+    indie: "artistic expression, unique sound, creative freedom, alternative approach",
+    "oldschool-rap": "classic hip-hop beats, boom bap drums, vinyl scratch samples, 90s nostalgia, conscious lyricism",
+    trap: "heavy 808s, rapid hi-hats, atmospheric synths, modern rap production, bass-heavy",
+    afrobeats: "african rhythms, percussion-driven, vibrant energy, call-and-response vocals, danceable grooves",
+    latin: "latin percussion, guitar melodies, passionate vocals, cultural richness, rhythmic diversity",
+    gospel: "soulful vocals, organ accompaniment, spiritual themes, choir harmonies, uplifting message"
   }
 
   // Vibe-specific emotional directions
@@ -107,6 +112,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Validate ElevenLabs API key
+    const apiKey = process.env.ELEVENLABS_API_KEY
+    if (!apiKey) {
+      console.error('❌ ElevenLabs API key not configured')
+      return NextResponse.json(
+        { error: 'ElevenLabs API key not configured' },
+        { status: 500 }
+      )
+    }
+
     // Create intelligent prompt that uses all user input as inspiration
     const intelligentPrompt = createIntelligentPrompt(formData)
     
@@ -114,14 +129,6 @@ export async function POST(request: NextRequest) {
     
     // Generate unique song ID for tracking
     const songId = `song_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`
-    
-    // Simulate backend processing - in production this would call actual music generation API
-    const mockResponse = {
-      songId: songId,
-      eta: 5, // 5 seconds estimated processing time
-      provider: 'ElevenLabs',
-      processingTimeMs: Date.now()
-    }
     
     // Store the request for status checking (in production, this would be a database)
     ;(global as any).songRequests = (global as any).songRequests || new Map()
@@ -132,22 +139,19 @@ export async function POST(request: NextRequest) {
       submittedAt: Date.now()
     })
     
-    // Simulate processing completion after 3 seconds
-    setTimeout(() => {
-      const request = (global as any).songRequests?.get(songId)
-      if (request) {
-        ;(global as any).songRequests.set(songId, {
-          ...request,
-          status: 'completed',
-          audioUrl: '/demo-song.mp3', // In production, this would be the actual generated song
-          completedAt: Date.now()
-        })
-      }
-    }, 3000)
+    // Start async music generation with ElevenLabs API
+    generateMusicAsync(songId, intelligentPrompt, apiKey, formData.selectedVoiceId)
     
-    console.log('✅ Song generation request submitted:', songId)
+    const response = {
+      songId: songId,
+      eta: 45, // ElevenLabs music generation typically takes 30-60 seconds
+      provider: 'ElevenLabs Music API',
+      processingTimeMs: Date.now()
+    }
     
-    return NextResponse.json(mockResponse)
+    console.log('✅ Song generation request submitted to ElevenLabs:', songId)
+    
+    return NextResponse.json(response)
 
   } catch (error: any) {
     console.error('❌ Error in song generation:', error)
@@ -155,5 +159,107 @@ export async function POST(request: NextRequest) {
       { error: 'Failed to process song generation request' },
       { status: 500 }
     )
+  }
+}
+
+// Async function to generate music with ElevenLabs API
+async function generateMusicAsync(songId: string, prompt: string, apiKey: string, voiceId: string) {
+  try {
+    console.log(`🎼 Starting ElevenLabs music generation for song: ${songId}`)
+    
+    // Call ElevenLabs Music API
+    const response = await fetch('https://api.elevenlabs.io/v1/music/compose', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'xi-api-key': apiKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prompt: prompt,
+        music_length_ms: 60000, // 1 minute = 60,000 milliseconds
+        model: 'eleven_music_v1', // Use the music model
+        voice_id: voiceId // Use selected voice for vocals
+      })
+    })
+
+    const songRequest = (global as any).songRequests?.get(songId)
+    if (!songRequest) {
+      console.error(`❌ Song request not found: ${songId}`)
+      return
+    }
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      console.error(`❌ ElevenLabs API error:`, response.status, errorData)
+      
+      ;(global as any).songRequests.set(songId, {
+        ...songRequest,
+        status: 'error',
+        error: `ElevenLabs API error: ${response.status} - ${errorData.detail || 'Unknown error'}`,
+        completedAt: Date.now()
+      })
+      return
+    }
+
+    // The response might be audio data or a URL depending on the API
+    const contentType = response.headers.get('content-type')
+    
+    if (contentType?.includes('audio')) {
+      // Direct audio response
+      const audioBuffer = await response.arrayBuffer()
+      const audioBase64 = Buffer.from(audioBuffer).toString('base64')
+      
+      ;(global as any).songRequests.set(songId, {
+        ...songRequest,
+        status: 'completed',
+        audioData: audioBase64,
+        completedAt: Date.now()
+      })
+      
+      console.log(`✅ Music generation completed for song: ${songId}`)
+    } else {
+      // JSON response with URL or further processing needed
+      const result = await response.json()
+      
+      if (result.audio_url) {
+        ;(global as any).songRequests.set(songId, {
+          ...songRequest,
+          status: 'completed',
+          audioUrl: result.audio_url,
+          completedAt: Date.now()
+        })
+      } else if (result.audio_data) {
+        ;(global as any).songRequests.set(songId, {
+          ...songRequest,
+          status: 'completed',
+          audioData: result.audio_data,
+          completedAt: Date.now()
+        })
+      } else {
+        console.error('❌ Unexpected API response format:', result)
+        ;(global as any).songRequests.set(songId, {
+          ...songRequest,
+          status: 'error',
+          error: 'Unexpected API response format',
+          completedAt: Date.now()
+        })
+      }
+      
+      console.log(`✅ Music generation completed for song: ${songId}`)
+    }
+
+  } catch (error: any) {
+    console.error(`❌ Error in async music generation for ${songId}:`, error)
+    
+    const songRequest = (global as any).songRequests?.get(songId)
+    if (songRequest) {
+      ;(global as any).songRequests.set(songId, {
+        ...songRequest,
+        status: 'error',
+        error: error.message || 'Music generation failed',
+        completedAt: Date.now()
+      })
+    }
   }
 }

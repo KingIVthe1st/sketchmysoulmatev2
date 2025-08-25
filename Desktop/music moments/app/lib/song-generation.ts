@@ -6,7 +6,7 @@ interface GenerationRequest {
   recipient: string
   relationship: string
   vibe: 'romantic' | 'uplifting' | 'nostalgic' | 'energetic' | 'cinematic'
-  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral' | 'hiphop' | 'ballad' | 'country' | 'rock' | 'rnb' | 'jazz' | 'folk' | 'reggae' | 'electronic' | 'blues' | 'indie'
+  genre: 'pop' | 'acoustic' | 'lofi' | 'orchestral' | 'hiphop' | 'ballad' | 'country' | 'rock' | 'rnb' | 'jazz' | 'folk' | 'reggae' | 'electronic' | 'blues' | 'indie' | 'oldschool-rap' | 'trap' | 'afrobeats' | 'latin' | 'gospel'
   story: string
   lyrics: string
   title: string
@@ -28,6 +28,7 @@ interface SongResult {
   status: 'processing' | 'complete' | 'completed' | 'error' | 'zombie_detected'
   audioUrl?: string
   audioData?: string
+  audioMessage?: string
   lyrics?: string
   voiceId?: string
   voiceCategory?: string
@@ -121,6 +122,7 @@ class SongGenerator {
       status: normalizedStatus,
       audioUrl: data.audioUrl,
       audioData: data.audioData,
+      audioMessage: data.audioMessage,
       lyrics: data.lyrics,
       voiceId: data.voiceId,
       voiceCategory: data.voiceCategory,
@@ -129,7 +131,7 @@ class SongGenerator {
     }
   }
 
-  // Step 3: Complete generation flow with smart timing
+  // Step 3: Complete generation flow with proper ElevenLabs timing (45-90 seconds)
   async generateSong(
     formData: GenerationRequest,
     onProgress?: (message: string) => void
@@ -138,59 +140,71 @@ class SongGenerator {
     
     try {
       // Step 1: Submit request
-      onProgress?.('Submitting generation request...')
+      onProgress?.('Preparing your personalized song...')
       const generationResponse = await this.submitGeneration(formData)
       
-      // Step 2: Smart wait based on backend performance (2-3 seconds average)
-      onProgress?.('Generation in progress... (this takes 2-5 seconds)')
-      console.log('⏳ [GENERATOR] Waiting 3 seconds before first status check...')
-      await this.sleep(3000)
+      // Step 2: Start polling with proper ElevenLabs timing (45-90 seconds typical)
+      onProgress?.('Generating your personalized song... This typically takes 45-90 seconds')
+      console.log('⏳ [GENERATOR] Starting status polling for ElevenLabs generation...')
       
-      // Step 3: First status check
-      onProgress?.('Checking if song is ready...')
-      let result = await this.checkSongStatus(generationResponse.songId)
+      // Poll every 4 seconds for up to 3 minutes (180 seconds)
+      const maxAttempts = 45 // 45 * 4 seconds = 3 minutes
+      const pollInterval = 4000 // 4 seconds between polls
+      let attempt = 0
       
-      if (result.status === 'complete' || result.status === 'completed') {
-        console.log('🎉 [GENERATOR] Song ready on first check!')
-        return result
-      }
-      
-      if (result.status === 'error') {
-        throw new Error(result.error || 'Song generation failed')
-      }
-      
-      if (result.status === 'zombie_detected') {
-        throw new Error('Zombie polling detected - please refresh the page')
-      }
-      
-      // Step 4: If still processing, wait a bit more and try once more
-      if (result.status === 'processing') {
-        onProgress?.('Still processing... just a moment more...')
-        console.log('🔄 [GENERATOR] Still processing, waiting 2 more seconds...')
-        await this.sleep(2000)
+      while (attempt < maxAttempts) {
+        attempt++
         
-        // Final status check
-        result = await this.checkSongStatus(generationResponse.songId)
+        // Wait before checking (except first attempt which waits longer for initial processing)
+        const waitTime = attempt === 1 ? 8000 : pollInterval
+        console.log(`⏳ [GENERATOR] Waiting ${waitTime/1000} seconds before status check ${attempt}/${maxAttempts}...`)
+        await this.sleep(waitTime)
         
+        // Update progress message based on time elapsed
+        const timeElapsed = (attempt === 1) ? 8 : 8 + ((attempt - 1) * 4)
+        if (timeElapsed < 30) {
+          onProgress?.('AI is composing your personalized lyrics and melody...')
+        } else if (timeElapsed < 60) {
+          onProgress?.('Creating the vocal performance with your chosen voice...')
+        } else if (timeElapsed < 90) {
+          onProgress?.('Finalizing audio production and mixing...')
+        } else {
+          onProgress?.('Almost ready... Adding final touches to your song...')
+        }
+        
+        // Check status
+        console.log(`🔍 [GENERATOR] Status check ${attempt}/${maxAttempts} for song: ${generationResponse.songId}`)
+        let result = await this.checkSongStatus(generationResponse.songId)
+        
+        // Handle completed song
         if (result.status === 'complete' || result.status === 'completed') {
-          console.log('🎉 [GENERATOR] Song ready on second check!')
+          console.log(`🎉 [GENERATOR] Song ready after ${attempt} attempts (${timeElapsed} seconds)!`)
+          onProgress?.('Your personalized song is ready!')
           return result
         }
         
-        if (result.status === 'zombie_detected') {
-          throw new Error('Zombie polling detected - please refresh the page')
-        }
-        
+        // Handle errors
         if (result.status === 'error') {
           throw new Error(result.error || 'Song generation failed')
         }
         
-        // If still not ready, that's unusual but we'll throw a timeout error
-        throw new Error('Song generation is taking longer than expected. Please try again.')
+        // Handle zombie detection
+        if (result.status === 'zombie_detected') {
+          throw new Error('System detected runaway processes - please refresh the page and try again')
+        }
+        
+        // Continue polling if still processing
+        if (result.status === 'processing') {
+          console.log(`🔄 [GENERATOR] Still processing after ${timeElapsed} seconds, continuing to poll...`)
+          continue
+        }
+        
+        // Unknown status
+        console.warn(`⚠️ [GENERATOR] Unknown status: ${result.status}, continuing to poll...`)
       }
       
-      // Unknown status
-      throw new Error(`Unexpected status: ${result.status}`)
+      // If we've exhausted all attempts (3 minutes), throw timeout error
+      throw new Error('Song generation is taking longer than expected (3+ minutes). This may be due to high server load. Please try again in a few minutes.')
       
     } catch (error) {
       console.error('❌ [GENERATOR] Generation failed:', error)

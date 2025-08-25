@@ -2,18 +2,40 @@
 @tailwind components; 
 @tailwind utilities;
 
-/* Basic CSS without Tailwind directives */
+/* iPhone Optimization & Mobile-First CSS */
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
+/* Enhanced iOS support with proper font smoothing */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   background: linear-gradient(135deg, #f3e8ff 0%, #fdf2f8 100%);
   color: #374151;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern";
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* iOS Safari viewport height fix */
+html {
+  height: -webkit-fill-available;
+}
+
+/* Touch and scroll optimizations for iOS */
+html, body {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,11 +56,65 @@ body {
   animation: spin 1s linear infinite;
 }
 
+/* iPhone-Optimized Touch Targets & Form Elements */
+input, textarea, select, button {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 8px;
+  min-height: 44px; /* Apple's minimum touch target */
+  font-size: 16px; /* Prevent iOS zoom */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Enhanced mobile form inputs */
+input:focus, textarea:focus, select:focus {
+  transform: scale(1.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Touch-friendly buttons */
+button {
+  min-height: 48px;
+  padding: 12px 24px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Mobile-optimized select elements */
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* Prevent overscroll bounce on iOS */
+.no-bounce {
+  overscroll-behavior: none;
+}
+
 /* Utility classes */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1rem;
+}
+
+/* Mobile-first responsive padding */
+@media (min-width: 640px) {
+  .container {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 2rem 1rem;
+  }
 }
 
 .form-container {
@@ -232,9 +308,62 @@ body {
   }
 }
 
+/* Mobile-Optimized Audio Player */
 .audio-player {
   width: 100%;
   margin: 1rem 0;
+  min-height: 54px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Enhanced audio controls for mobile */
+.audio-player::-webkit-media-controls-panel {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.audio-player::-webkit-media-controls-play-button,
+.audio-player::-webkit-media-controls-pause-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  margin: 8px;
+}
+
+.audio-player::-webkit-media-controls-timeline {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  margin: 0 8px;
+}
+
+.audio-player::-webkit-media-controls-current-time-display,
+.audio-player::-webkit-media-controls-time-remaining-display {
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
+
+/* Download button optimization for iOS Safari */
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-download:active {
+  transform: scale(0.96);
 }
 
 .lyrics-container {
@@ -347,6 +476,95 @@ body {
   .progress-status {
     color: #9ca3af;
   }
+}
+
+/* iPhone-Specific Responsive Utilities */
+@media screen and (max-width: 480px) {
+  /* iPhone SE, 12 mini, 13 mini optimizations */
+  .text-mobile-sm { font-size: 0.75rem; }
+  .text-mobile-base { font-size: 0.875rem; }
+  .text-mobile-lg { font-size: 1rem; }
+  .text-mobile-xl { font-size: 1.125rem; }
+  .text-mobile-2xl { font-size: 1.25rem; }
+  .text-mobile-3xl { font-size: 1.5rem; }
+  .text-mobile-4xl { font-size: 2rem; }
+  
+  .p-mobile-sm { padding: 0.5rem; }
+  .p-mobile-md { padding: 0.75rem; }
+  .p-mobile-lg { padding: 1rem; }
+  .p-mobile-xl { padding: 1.25rem; }
+  
+  .space-y-mobile { margin-bottom: 1rem; }
+  .gap-mobile { gap: 0.75rem; }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  /* iPhone Pro, Pro Max, Plus models optimizations */
+  .text-tablet-lg { font-size: 1.125rem; }
+  .text-tablet-xl { font-size: 1.25rem; }
+  .text-tablet-2xl { font-size: 1.5rem; }
+  .text-tablet-3xl { font-size: 1.875rem; }
+  .text-tablet-4xl { font-size: 2.25rem; }
+  
+  .p-tablet-lg { padding: 1.5rem; }
+  .p-tablet-xl { padding: 2rem; }
+}
+
+/* Touch-friendly spacing for all mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .touch-spacing-sm { margin: 0.5rem 0; }
+  .touch-spacing-md { margin: 1rem 0; }
+  .touch-spacing-lg { margin: 1.5rem 0; }
+  
+  .touch-padding-sm { padding: 0.75rem; }
+  .touch-padding-md { padding: 1rem; }
+  .touch-padding-lg { padding: 1.5rem; }
+  
+  /* Increase tap target sizes */
+  button, .btn, [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Optimize text for touch devices */
+  p, span, div {
+    line-height: 1.6;
+  }
+  
+  /* Better contrast for mobile screens */
+  .text-contrast {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* iOS Safe Area Support */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-area-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  
+  .safe-area-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+  
+  .safe-area-all {
+    padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  }
+}
+
+/* Performance optimizations for mobile */
+.mobile-optimized {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Premium Liquid-Looking Effects */
