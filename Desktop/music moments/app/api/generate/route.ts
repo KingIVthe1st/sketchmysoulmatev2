@@ -167,6 +167,14 @@ async function generateMusicAsync(songId: string, prompt: string, apiKey: string
   try {
     console.log(`🎼 Starting ElevenLabs music generation for song: ${songId}`)
     
+    // Handle fallback voice IDs by using a default voice
+    let actualVoiceId = voiceId
+    if (voiceId.startsWith('fallback-')) {
+      // Use a default voice ID when fallback is selected
+      actualVoiceId = 'EXAVITQu4vr4xnSDxMaL' // Default ElevenLabs voice
+      console.log(`🎤 Using default voice for fallback: ${actualVoiceId}`)
+    }
+    
     // Call ElevenLabs Music API
     const response = await fetch('https://api.elevenlabs.io/v1/music/compose', {
       method: 'POST',
@@ -179,7 +187,7 @@ async function generateMusicAsync(songId: string, prompt: string, apiKey: string
         prompt: prompt,
         music_length_ms: 60000, // 1 minute = 60,000 milliseconds
         model: 'eleven_music_v1', // Use the music model
-        voice_id: voiceId // Use selected voice for vocals
+        voice_id: actualVoiceId // Use selected or default voice for vocals
       })
     })
 
