@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuration for Render deployment
-  // Remove static export since Render supports server-side rendering
+  // Configuration for DigitalOcean deployment
+  // Use standard Next.js server-side rendering
   
   // Webpack configuration
   webpack: (config, { isServer }) => {
