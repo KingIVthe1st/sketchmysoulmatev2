@@ -68,6 +68,14 @@ export default function HomePage() {
       )
 
       if (result.status === 'complete') {
+        console.log('🎉 [HOMEPAGE] Song generation complete, result:', {
+          hasAudioData: !!result.audioData,
+          hasAudioUrl: !!result.audioUrl,
+          hasSongId: !!result.songId,
+          audioUrlValue: result.audioUrl,
+          songIdValue: result.songId,
+          audioDataLength: result.audioData?.length || 0
+        })
         setSongResult(result)
         setCurrentStep('complete')
       } else if (result.status === 'zombie_detected') {
@@ -533,19 +541,28 @@ export default function HomePage() {
         key: 'subtitle',
         className: "text-mobile-2xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 xs:mb-5 sm:mb-6 text-contrast"
       }, 'Your masterpiece is ready!'),
-      (songResult.audioUrl || songResult.audioData || (songResult as any).songId) && React.createElement('div', {
+      (songResult.audioUrl || songResult.audioData || songResult.songId) && React.createElement('div', {
         key: 'audio',
         className: "bg-white/10 backdrop-blur-xl rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 xs:mb-7 sm:mb-8 mobile-optimized"
       }, React.createElement('audio', {
         controls: true,
         className: "w-full mb-2 xs:mb-3 sm:mb-4 audio-player",
-        src: songResult.audioData 
-          ? `data:audio/mpeg;base64,${songResult.audioData}` 
-          : songResult.audioUrl && songResult.audioUrl !== '' && !songResult.audioUrl.includes('elevenlabs') 
-            ? songResult.audioUrl 
-            : songResult.songId 
-              ? `/api/audio?songId=${songResult.songId}` 
-              : '#',
+        src: (() => {
+          let audioSrc = '#'
+          if (songResult.audioData) {
+            audioSrc = `data:audio/mpeg;base64,${songResult.audioData}`
+            console.log('🎵 [HOMEPAGE] Using base64 audio data')
+          } else if (songResult.audioUrl && songResult.audioUrl !== '' && !songResult.audioUrl.includes('elevenlabs')) {
+            audioSrc = songResult.audioUrl
+            console.log('🔗 [HOMEPAGE] Using external audio URL:', songResult.audioUrl)
+          } else if (songResult.songId) {
+            audioSrc = `/api/audio?songId=${songResult.songId}`
+            console.log('🎯 [HOMEPAGE] Using audio proxy endpoint:', audioSrc)
+          } else {
+            console.warn('⚠️ [HOMEPAGE] No valid audio source available')
+          }
+          return audioSrc
+        })(),
         preload: "metadata",
         controlsList: "nodownload noremoteplayback",
         style: { minHeight: '54px' }
