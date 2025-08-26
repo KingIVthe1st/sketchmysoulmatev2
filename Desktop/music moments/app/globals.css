@@ -85,11 +85,58 @@ button {
 
 /* Mobile-optimized select elements */
 select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 12px center;
   background-repeat: no-repeat;
   background-size: 16px;
   padding-right: 40px;
+}
+
+/* Enhanced form field focus states for better mobile UX */
+input[type="text"]:focus, 
+textarea:focus, 
+select:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  outline: none;
+}
+
+/* Smooth transitions for form elements */
+input, textarea, select {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced touch feedback */
+@media (hover: none) and (pointer: coarse) {
+  input:active, textarea:active, select:active, button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Improved form field spacing for mobile */
+@media screen and (max-width: 480px) {
+  .form-field-spacing {
+    margin-bottom: 1rem;
+  }
+  
+  /* Better touch target for form elements on small screens */
+  input, textarea, select {
+    min-height: 48px;
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+  
+  /* Improved button spacing */
+  button {
+    min-height: 52px;
+    padding: 16px 20px;
+  }
+  
+  /* Enhanced visual feedback for mobile form interactions */
+  .mobile-form-glow:focus-within {
+    box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
+  }
 }
 
 /* Prevent overscroll bounce on iOS */

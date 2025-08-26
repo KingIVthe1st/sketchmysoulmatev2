@@ -305,7 +305,7 @@ export default function HomePage() {
             React.createElement('div', { key: 'genre' }, [
               React.createElement('label', {
                 key: 'genre-label',
-                className: "block text-lg font-semibold bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent mb-6"
+                className: "block text-mobile-lg xs:text-base sm:text-lg font-semibold bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent mb-3 xs:mb-4 sm:mb-6 text-contrast"
               }, "🎵 Music style"),
               React.createElement('div', {
                 key: 'genre-wrapper',
@@ -317,7 +317,7 @@ export default function HomePage() {
                 }),
                 React.createElement('select', {
                   key: 'genre-select',
-                  className: "relative w-full p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-3xl focus:ring-4 focus:ring-purple-400/30 focus:border-purple-400/60 focus:bg-slate-700/60 text-white text-lg shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-purple-500/20 appearance-none cursor-pointer",
+                  className: "relative w-full p-3 xs:p-4 sm:p-5 lg:p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-xl border-2 border-white/20 rounded-xl xs:rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-purple-400/30 focus:border-purple-400/60 focus:bg-slate-700/60 text-white text-mobile-lg xs:text-base sm:text-lg shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-purple-500/20 appearance-none cursor-pointer mobile-optimized",
                 value: formData.genre,
                 onChange: (e: React.ChangeEvent<HTMLSelectElement>) => handleInputChange('genre', e.target.value)
                }, [
@@ -379,15 +379,15 @@ export default function HomePage() {
             React.createElement('div', { key: 'story' }, [
               React.createElement('div', {
                 key: 'story-header',
-                className: "flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6"
+                className: "flex flex-col sm:flex-row sm:items-center justify-between gap-2 xs:gap-3 mb-3 xs:mb-4 sm:mb-6"
               }, [
                 React.createElement('label', {
                   key: 'story-label',
-                  className: "text-lg font-semibold bg-gradient-to-r from-amber-200 to-orange-200 bg-clip-text text-transparent"
+                  className: "text-mobile-lg xs:text-base sm:text-lg font-semibold bg-gradient-to-r from-amber-200 to-orange-200 bg-clip-text text-transparent text-contrast"
                 }, '📝 Share your story'),
                 React.createElement('span', {
                   key: 'counter',
-                  className: `text-sm font-medium px-3 py-1 rounded-full backdrop-blur-sm ${formData.story.length >= 200 ? 'bg-green-500/20 text-green-300 border border-green-400/30' : 'bg-amber-500/20 text-amber-300 border border-amber-400/30'}`
+                  className: `text-mobile-sm xs:text-xs sm:text-sm font-medium px-2 xs:px-3 py-1 rounded-full backdrop-blur-sm ${formData.story.length >= 200 ? 'bg-green-500/20 text-green-300 border border-green-400/30' : 'bg-amber-500/20 text-amber-300 border border-amber-400/30'}`
                 }, `${formData.story.length}/500`)
               ]),
               React.createElement('div', {
@@ -409,11 +409,11 @@ export default function HomePage() {
               ]),
               React.createElement('div', {
                 key: 'story-helper',
-                className: `mt-4 text-sm flex items-center gap-2 px-4 py-2 rounded-xl backdrop-blur-sm transition-all duration-300 ${formData.story.length >= 200 ? 'bg-green-500/10 text-green-300 border border-green-400/20' : 'bg-amber-500/10 text-amber-300 border border-amber-400/20'}`
+                className: `mt-3 xs:mt-4 text-mobile-sm xs:text-xs sm:text-sm flex items-center gap-2 px-3 xs:px-4 py-2 rounded-xl backdrop-blur-sm transition-all duration-300 ${formData.story.length >= 200 ? 'bg-green-500/10 text-green-300 border border-green-400/20' : 'bg-amber-500/10 text-amber-300 border border-amber-400/20'}`
               }, [
                 React.createElement('span', {
                   key: 'helper-icon',
-                  className: "text-base"
+                  className: "text-mobile-base xs:text-sm sm:text-base flex-shrink-0"
                 }, formData.story.length >= 200 ? '✅' : '⏳'),
                 React.createElement('span', {
                   key: 'helper-text'
