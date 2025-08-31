@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Sense - Discover Your True Soulmate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #FFF8F5;
+        }
+        .hero-bg {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="20" stroke="%23E5D3F3" stroke-width="1" fill="none" opacity="0.3"/><circle cx="20" cy="20" r="10" stroke="%23E5D3F3" stroke-width="0.5" fill="none" opacity="0.2"/><circle cx="80" cy="80" r="15" stroke="%23E5D3F3" stroke-width="0.5" fill="none" opacity="0.2"/></svg>');
+            background-repeat: repeat;
+            background-size: 200px 200px;
+        }
+    </style>
+</head>
+<body class="hero-bg min-h-screen">
+    <div class="container mx-auto max-w-md sm:max-w-xl px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <div class="flex items-center justify-center gap-3 mb-2">
+                <div class="w-8 h-8 text-2xl">🙏</div>
+                <h1 class="text-xl font-semibold text-gray-800">Astro Sense</h1>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-6 leading-tight">
+                Ready to finally discover your 
+                <span style="color: #7944C8;">True Soulmate?</span>
+            </h2>
+
+            <div class="mb-6">
+                <div class="w-64 h-64 mx-auto mb-6 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center text-6xl">
+                    💕
+                </div>
+            </div>
+
+            <!-- Benefit Badges -->
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full" style="background-color: #F5EAF7; color: #A13A70;">
+                    <span>⏱️</span>
+                    <span class="text-sm font-medium">1-min quiz</span>
+                </div>
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full" style="background-color: #F5EAF7; color: #A13A70;">
+                    <span>🎁</span>
+                    <span class="text-sm font-medium">Detailed sketch portrait</span>
+                </div>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="bg-white rounded-3xl p-6 mb-8 shadow-lg border border-orange-100">
+                <p class="text-sm text-gray-600 mb-4">
+                    Astro Sense has helped <strong>2,000,000+</strong> people to find their perfect partner with <strong>87% accuracy rate</strong>
+                </p>
+
+                <div class="bg-gray-50 rounded-2xl p-4 relative">
+                    <div class="text-2xl mb-2">💬</div>
+                    <p class="text-sm italic text-gray-700 mb-3">
+                        "I was skeptical but desperate. After 5 years of bad dates, this portrait helped me find Marcus in just 6 weeks! 💝 💝 Still can't believe it!"
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        <strong>Maria, Texas, 🇺🇸USA</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <button onclick="startQuiz()" class="w-full py-4 rounded-2xl text-white font-semibold text-lg shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2" style="background-color: #7944C8;">
+                <span>✨</span>
+                Let's begin
+                <span>✨</span>
+            </button>
+
+            <!-- Footer -->
+            <footer class="mt-12 text-xs text-gray-500 space-y-2">
+                <div class="space-x-4">
+                    <a href="#" class="hover:text-gray-700">EULA</a>
+                    <a href="#" class="hover:text-gray-700">Privacy Notice</a>
+                </div>
+                <div>
+                    <a href="mailto:support@astro-sense.com" class="hover:text-gray-700">support@astro-sense.com</a>
+                </div>
+                <div class="text-center">
+                    Pintoulini LTD<br>
+                    28 Oktovriou, 367, Mediterranean Court<br>
+                    1st Floor, office A5, 3107, Limassol, Cyprus
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function startQuiz() {
+            alert('🎉 Welcome to your Soulmate Discovery Journey!\n\nThis is a demo page showcasing the Soul Sketch funnel design.\n\nThe actual funnel would start here with the first question about gender selection.');
+        }
+
+        // Add some interactive sparkle effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.querySelector('button');
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
