@@ -378,6 +378,184 @@
 
       <!-- Section end -->
 
+      <!-- Demo Section start -->
+      <div id="demo" class="demo section panel">
+        <div class="section-outer panel pt-6 lg:pt-8 xl:pt-10">
+          <div class="container xl:max-w-xl">
+            <div class="section-inner panel">
+              <div
+                class="panel vstack items-center gap-2 xl:gap-3 mb-4 lg:mb-8 max-w-650px mx-auto text-center"
+                data-anime="onview: -100; targets: >*; translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+              >
+                <div class="cstack gap-1 py-1 px-2 border rounded-pill">
+                  <span
+                    class="d-inline-block w-4px h-4px rounded-circle bg-primary dark:bg-secondary"
+                  ></span>
+                  <span class="fs-8 fw-bold text-uppercase">Try Demo</span>
+                </div>
+                <h2 class="h3 lg:h2 xl:h1 m-0 px-2">
+                  Create Your
+                  <span
+                    class="d-inline-flex px-1 bg-primary text-white -rotate-1 lg:-rotate-2 rounded-1 lg:rounded-1-5"
+                    >Musical Story</span
+                  >
+                  Now.
+                </h2>
+                <p
+                  class="fs-6 xl:fs-5 text-black dark:text-white text-opacity-70"
+                >
+                  Fill out the form below to generate a personalized song for your special moment using AI.
+                </p>
+              </div>
+
+              <!-- Demo Form -->
+              <div class="max-w-lg mx-auto">
+                <div
+                  class="panel bg-white dark:bg-gray-900 rounded-2 lg:rounded-3 p-4 lg:p-6 shadow-lg"
+                  data-anime="onview: -100; translateY: [80, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: 200;"
+                >
+                  <form id="demo-music-form" class="vstack gap-4">
+                    <!-- Occasion -->
+                    <div class="form-group">
+                      <label class="form-label fs-7 fw-semibold text-black dark:text-white mb-2">
+                        <i class="unicon-gift me-1"></i>
+                        What's the occasion?
+                      </label>
+                      <select class="form-control bg-gray-100 dark:bg-gray-800 border-0 rounded-1 p-3" id="demo-occasion">
+                        <option value="">Choose your celebration</option>
+                        <option value="birthday">Birthday</option>
+                        <option value="anniversary">Anniversary</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="graduation">Graduation</option>
+                        <option value="valentine">Valentine's Day</option>
+                        <option value="christmas">Christmas</option>
+                        <option value="friendship">Friendship</option>
+                        <option value="apology">Apology</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+
+                    <!-- Names -->
+                    <div class="form-group">
+                      <label class="form-label fs-7 fw-semibold text-black dark:text-white mb-2">
+                        <i class="unicon-users-alt me-1"></i>
+                        Who's this for?
+                      </label>
+                      <input 
+                        type="text" 
+                        class="form-control bg-gray-100 dark:bg-gray-800 border-0 rounded-1 p-3"
+                        id="demo-names"
+                        placeholder="Sarah, Mom, John, Alex..."
+                      >
+                    </div>
+
+                    <!-- Relationship -->
+                    <div class="form-group">
+                      <label class="form-label fs-7 fw-semibold text-black dark:text-white mb-2">
+                        <i class="unicon-heart me-1"></i>
+                        Your relationship
+                      </label>
+                      <input 
+                        type="text" 
+                        class="form-control bg-gray-100 dark:bg-gray-800 border-0 rounded-1 p-3"
+                        id="demo-relationship"
+                        placeholder="wife, friend, daughter, partner..."
+                      >
+                    </div>
+
+                    <!-- Music Style -->
+                    <div class="form-group">
+                      <label class="form-label fs-7 fw-semibold text-black dark:text-white mb-2">
+                        <i class="unicon-music-note me-1"></i>
+                        Music style
+                      </label>
+                      <select class="form-control bg-gray-100 dark:bg-gray-800 border-0 rounded-1 p-3" id="demo-music-style">
+                        <option value="pop">Pop</option>
+                        <option value="rock">Rock</option>
+                        <option value="country">Country</option>
+                        <option value="jazz">Jazz</option>
+                        <option value="classical">Classical</option>
+                        <option value="hip-hop">Hip-Hop</option>
+                        <option value="acoustic">Acoustic</option>
+                        <option value="electronic">Electronic</option>
+                      </select>
+                    </div>
+
+                    <!-- Voice Selection Info -->
+                    <div class="form-group">
+                      <label class="form-label fs-7 fw-semibold text-black dark:text-white mb-2">
+                        Voice Selection
+                      </label>
+                      <div class="alert alert-danger bg-danger bg-opacity-10 border border-danger border-opacity-20 text-danger rounded-1 p-3">
+                        <i class="unicon-exclamation-triangle me-1"></i>
+                        Error loading voices: Failed to fetch voices: 404
+                      </div>
+                    </div>
+
+                    <!-- Story -->
+                    <div class="form-group">
+                      <label class="form-label fs-7 fw-semibold text-black dark:text-white mb-2">
+                        <i class="unicon-file-alt me-1"></i>
+                        Share your story
+                      </label>
+                      <div class="position-relative">
+                        <textarea 
+                          class="form-control bg-gray-100 dark:bg-gray-800 border-0 rounded-1 p-3"
+                          id="demo-story"
+                          rows="4"
+                          placeholder="Tell us about this special moment, person, or memory that means so much to you. The more heartfelt details you share, the more personalized your song will be..."
+                          maxlength="500"
+                        ></textarea>
+                        <div class="position-absolute bottom-0 end-0 p-2">
+                          <small class="text-muted">
+                            <span id="demo-story-count">0</span>/500
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button 
+                      type="submit" 
+                      id="demo-generate-btn"
+                      class="btn btn-primary btn-lg w-100 rounded-1 p-3"
+                    >
+                      <span>Generate Your Song</span>
+                      <i class="icon icon-narrow unicon-arrow-right fw-bold ms-2"></i>
+                    </button>
+
+                    <!-- Loading Spinner -->
+                    <div id="demo-loading-spinner" class="text-center mt-3" style="display: none;">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Generating...</span>
+                      </div>
+                      <p class="mt-2 text-muted">Creating your personalized song...</p>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="demo-error-message" class="alert alert-danger mt-3" style="display: none;"></div>
+
+                    <!-- Success Message -->
+                    <div id="demo-success-message" class="alert alert-success mt-3" style="display: none;"></div>
+
+                    <!-- Audio Player -->
+                    <div id="demo-audio-container" class="mt-4" style="display: none;">
+                      <div class="bg-gray-100 dark:bg-gray-800 rounded-1 p-4">
+                        <h5 class="fs-6 fw-semibold mb-3">Your Generated Song:</h5>
+                        <audio id="demo-audio-player" controls class="w-100">
+                          Your browser does not support the audio element.
+                        </audio>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Demo Section end -->
+
       <!-- Section start -->
       <div id="features" class="features section panel">
         <div class="section-outer panel pt-6 lg:pt-8 xl:pt-10">
@@ -2697,6 +2875,7 @@
     <!-- include app script -->
     <script defer src="/assets/js/form.js"></script>
     <script defer src="/assets/js/music-generator.js"></script>
+    <script defer src="/assets/js/demo-form.js"></script>
     <script defer src="/assets/js/app.js"></script>
 
     <script>
