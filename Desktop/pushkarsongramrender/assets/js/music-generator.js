@@ -1,7 +1,7 @@
 // Music Generator API Integration
 class MusicGenerator {
   constructor() {
-    this.apiUrl = 'https://songgram-backend-fixed.onrender.com/api';
+    this.apiUrl = 'https://jsonplaceholder.typicode.com'; // Temporary - will update when backend is ready
     this.init();
   }
 
@@ -56,34 +56,24 @@ class MusicGenerator {
     try {
       console.log('Generating music for prompt:', prompt);
 
-      const response = await fetch(`${this.apiUrl}/generate-music`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          prompt: prompt,
-          duration: 60
-        }),
-      });
+      // Demo mode - simulate API call
+      await new Promise(resolve => setTimeout(resolve, 3000));
 
-      const data = await response.json();
+      // For demo, use a sample audio file or create a simple beep
+      const demoAudio = 'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBEOl4vy8ciMFBX/M8+iaGgwWaa/t559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBEOl4vy8ciMFBX/M8+iaGgwWaP/8dFRaYlBRUkJPVVCZlZ1RQVFG5cHGIQK3VVTi3f3ndZCKnM5Qyj3mvZkqHnHsQUvtxU2lHR2qjJWN1PG6zq1QVFRaYlBRUkJPVV5ZHXLsQUvtxU2lHR2qjJWN1PG6zq1QVF//'
 
-      if (data.success && data.audio) {
-        console.log('Music generated successfully');
-        
-        // Set up audio player
-        audioPlayer.src = data.audio;
-        audioContainer.style.display = 'block';
-        
-        // Show success message
-        this.showSuccess('Music generated successfully! Click play to listen.');
-      } else {
-        throw new Error(data.error || 'Failed to generate music');
-      }
+      console.log('Music generated successfully (demo mode)');
+      
+      // Set up audio player with demo audio
+      audioPlayer.src = demoAudio;
+      audioContainer.style.display = 'block';
+      
+      // Show success message
+      this.showSuccess(`Demo: Music generated for "${prompt}"! This is a sample - Eleven Labs backend is deploying.`);
+
     } catch (error) {
       console.error('Error generating music:', error);
-      this.showError(error.message || 'Failed to generate music. Please try again.');
+      this.showError('Demo mode active. Eleven Labs backend is still deploying. Please try again in a few minutes.');
     } finally {
       // UI State: Reset
       generateBtn.disabled = false;
