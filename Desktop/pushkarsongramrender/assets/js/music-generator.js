@@ -1,7 +1,7 @@
 // Music Generator API Integration
 class MusicGenerator {
   constructor() {
-    this.apiUrl = 'https://songgram-backend-api.onrender.com/api';
+    this.apiUrl = 'https://songgram-backend-fixed.onrender.com/api';
     this.init();
   }
 
