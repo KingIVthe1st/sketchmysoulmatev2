@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>songgram.ai - Create Music with AI | AI Music Generator</title>
+    <meta
+      name="description"
+      content="Transform your ideas into music with songgram.ai's powerful AI music generator. Create royalty-free tracks, beats, and melodies in seconds with advanced artificial intelligence."
+    />
+    <meta
+      name="keywords"
+      content="ai music generator, artificial intelligence music, create music with ai, ai composer, music generation, royalty free music, ai beats, automated music creation, songgram.ai"
+    />
+    <meta name="theme-color" content="#6366f1" />
+
+    <!-- preload head styles -->
+    <link rel="preload" href="/assets/css/fonts.css" as="style" />
+    <link rel="preload" href="/assets/css/unicons.min.css" as="style" />
+    <link rel="preload" href="/assets/css/swiper-bundle.min.css" as="style" />
+    <link rel="preload" href="/assets/css/magic-cursor.min.css" as="style" />
+
+    <!-- preload footer scripts -->
+    <link rel="preload" href="/assets/js/libs/jquery.min.js" as="script" />
+    <link rel="preload" href="/assets/js/libs/scrollmagic.min.js" as="script" />
+    <link
+      rel="preload"
+      href="/assets/js/libs/swiper-bundle.min.js"
+      as="script"
+    />
+    <link rel="preload" href="/assets/js/libs/anime.min.js" as="script" />
+    <link rel="preload" href="/assets/js/libs/typed.min.js" as="script" />
+    <link rel="preload" href="/assets/js/libs/tilt.min.js" as="script" />
+    <link rel="preload" href="/assets/js/libs/split-type.min.js" as="script" />
+    <link rel="preload" href="/assets/js/libs/prettify.min.js" as="script" />
+    <link rel="preload" href="/assets/js/libs/gsap.min.js" as="script" />
+    <link
+      rel="preload"
+      href="/assets/js/libs/smooth-scroll.min.js"
+      as="script"
+    />
+    <link rel="preload" href="/assets/js/core/magic-cursor.js" as="script" />
+    <link
+      rel="preload"
+      href="/assets/js/helpers/data-attr-helper.js"
+      as="script"
+    />
+    <link
+      rel="preload"
+      href="/assets/js/helpers/swiper-helper.js"
+      as="script"
+    />
+    <link
+      rel="preload"
+      href="/assets/js/helpers/splitype-helper.js"
+      as="script"
+    />
+    <link rel="preload" href="/assets/js/helpers/anime-helper.js" as="script" />
+    <link rel="preload" href="/assets/js/helpers/typed-helper.js" as="script" />
+    <link rel="preload" href="/assets/js/helpers/tilt-helper.js" as="script" />
+    <link rel="preload" href="/assets/js/core/marquee.js" as="script" />
+    <link rel="preload" href="/assets/js/uikit-components-bs.js" as="script" />
+    <link rel="preload" href="/assets/js/form.js" as="script" />
+    <link rel="preload" href="/assets/js/app.js" as="script" />
+
+    <!-- app head for bootstrap core -->
+    <script src="/assets/js/app-head-bs.js"></script>
+
+    <!-- include uni-core components -->
+    <link rel="stylesheet" href="/assets/js/uni-core/css/uni-core.min.css" />
+
+    <!-- include styles -->
+    <link rel="stylesheet" href="/assets/css/fonts.css" />
+    <link rel="stylesheet" href="/assets/css/unicons.min.css" />
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/assets/css/prettify.min.css" />
+    <link rel="stylesheet" href="/assets/css/magic-cursor.min.css" />
+
+    <!-- include main style -->
+    <link rel="stylesheet" href="/assets/css/theme/main.css" />
+    <link rel="stylesheet" href="/assets/css/theme/theme.css" />
+
+    <!-- include scripts -->
+    <script src="/assets/js/uni-core/js/uni-core-bundle.min.js"></script>
+  </head>
+
+  <body
+    class="uni-body panel bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 overflow-x-hidden"
+  >
+    <!--  Menu panel -->
+    <div id="uc-menu-panel" data-uc-offcanvas="overlay: true;">
+      <div
+        class="uc-offcanvas-bar bg-white text-dark dark:bg-gray-900 dark:text-white"
+      >
+        <header
+          class="uc-offcanvas-header hstack justify-between items-center pb-2 bg-white dark:bg-gray-900"
+        >
+          <div class="uc-logo text-dark dark:text-white">
+            <a class="panel text-none" href="index.html" style="width: 140px">
+              <img
+                class="dark:d-none"
+                src="/assets/images/common/logo-light.svg"
+                alt="songgram.ai"
+              />
+              <img
+                class="d-none dark:d-block"
+                src="/assets/images/common/logo-dark.svg"
+                alt="songgram.ai"
+              />
+            </a>
+          </div>
+          <button
+            class="uc-offcanvas-close rtl:end-auto rtl:start-0 m-1 mt-2 icon-3 btn border-0 dark:text-white dark:text-opacity-50 hover:text-primary hover:rotate-90 duration-150 transition-all"
+            type="button"
+          >
+            <i class="unicon-close"></i>
+          </button>
+        </header>
+
+        <div class="panel">
+          <ul class="nav-y gap-narrow fw-medium fs-6" data-uc-nav="">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/features.html">Features</a>
+            </li>
+            <li>
+              <a href="/pricing.html">Pricing</a>
+            </li>
+            <li>
+              <a href="/sign-in.html">Sign In</a>
+            </li>
+            <li>
+              <a href="/sign-up.html">Sign Up</a>
+            </li>
+          </ul>
+          <ul class="social-icons nav-x mt-4">
+            <li>
+              <a href="javascript:void(0)"
+                ><i class="unicon-logo-medium icon-2"></i
+              ></a>
+              <a href="javascript:void(0)"
+                ><i class="unicon-logo-x-filled icon-2"></i
+              ></a>
+              <a href="javascript:void(0)"
+                ><i class="unicon-logo-instagram icon-2"></i
+              ></a>
+              <a href="javascript:void(0)"
+                ><i class="unicon-logo-pinterest icon-2"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--  Bottom Actions Sticky -->
+    <div
+      class="backtotop-wrap position-fixed ltr:end-0 ltr:start-auto rtl:start-0 rtl:end-auto top-auto bottom-0 z-99 m-2 vstack"
+    >
+      <a
+        class="btn btn-sm bg-primary text-white w-40px h-40px rounded-circle"
+        data-uc-backtotop
+      >
+        <i class="icon-2 unicon-chevron-up"></i>
+      </a>
+    </div>
+
+    <!-- Header start -->
+    <header
+      class="uc-header header-six uc-navbar-sticky-wrap z-999"
+      data-uc-sticky="start: 1200px; animation: uc-animation-slide-top; sel-target: .uc-navbar-container; cls-active: uc-navbar-sticky; cls-inactive: uc-navbar-transparent; end: !*;"
+    >
+      <nav
+        class="uc-navbar-container lg:mt-3 rounded-0 lg:rounded-pill uc-navbar-float ft-tertiary z-1"
+        data-anime="translateY: [-40, 0]; opacity: [0, 1]; easing: easeOutExpo; duration: 750; delay: 0;"
+      >
+        <div class="uc-navbar-main" style="--uc-nav-height: 80px">
+          <div class="container max-w-lg lg:max-w-950px xl:max-w-xl">
+            <div
+              class="uc-navbar min-h-64px lg:min-h-80px px-2 lg:px-0 text-gray-900 dark:text-white"
+              data-uc-navbar="mode: click; animation: uc-animation-slide-top-small; duration: 150;"
+            >
+              <div class="uc-navbar-left">
+                <div class="uc-logo text-dark dark:text-white">
+                  <a
+                    class="panel text-none"
+                    href="index.html"
+                    style="width: 140px"
+                  >
+                    <img
+                      class="dark:d-none"
+                      src="/assets/images/common/logo-light.svg"
+                      alt="songgram.ai"
+                    />
+                    <img
+                      class="d-none dark:d-block"
+                      src="/assets/images/common/logo-dark.svg"
+                      alt="songgram.ai"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="uc-navbar-center">
+                <ul
+                  class="uc-navbar-nav gap-3 xl:gap-5 d-none lg:d-flex fs-5 fw-medium"
+                >
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>
+                    <a href="/features.html">Features</a>
+                  </li>
+                  <li>
+                    <a href="/pricing.html">Pricing</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="uc-navbar-right">
+                <a
+                  class="btn btn-sm btn-primary px-3 d-none lg:d-inline-flex"
+                  href="/pricing.html"
+                >
+                  <span>Start creating</span>
+                </a>
+                <a
+                  class="d-block lg:d-none"
+                  href="index-6.html#uc-menu-panel"
+                  data-uc-navbar-toggle-icon
+                  data-uc-toggle
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Header end -->
+
+    <!-- Wrapper start -->
+    <div id="wrapper" class="wrap">
+      <!-- Section start -->
+      <div
+        id="overview"
+        class="overview section panel overflow-hidden uc-dark lg:m-2 lg:rounded-3"
+      >
+        <div class="position-cover bg-white dark:bg-gray-900"></div>
+        <div class="position-cover opacity-70 bg-contain"></div>
+        <div
+          class="position-cover bg-gradient-to-t from-gray-800 via-transparent to-gray-900"
+        ></div>
+        <div
+          class="position-absolute d-inline-block w-500px h-500px rounded-circle bg-gradient-45 from-primary to-white start-50 blur-10 translate-middle blend-color-dodge"
+          style="top: 0%"
+        ></div>
+        <div
+          class="position-absolute d-inline-block w-250px h-250px rounded-circle bg-gradient-45 from-primary to-white start-0 blur-10 translate-middle blend-color-dodge"
+          style="top: 0%"
+        ></div>
+        <div
+          class="position-absolute d-inline-block w-250px h-250px rounded-circle bg-gradient-45 from-primary to-white start-100 blur-10 translate-middle blend-color-dodge"
+          style="top: 0%"
+        ></div>
+        <div class="section-outer panel pt-9 xl:pt-10">
+          <div class="container xl:max-w-xl">
+            <div class="section-inner panel pt-0 lg:pt-4 xl:pt-0">
+              <div
+                class="row child-cols-12 justify-center items-center g-6 xl:g-8"
+              >
+                <div>
+                  <div
+                    class="panel vstack justify-center items-center gap-3 max-w-600px lg:max-w-750px mx-auto px-2 lg:px-0 text-center"
+                    data-anime="targets: >*; translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+                  >
+                    <div class="cstack gap-1 py-1 px-2 border rounded-pill">
+                      <span
+                        class="d-inline-block w-4px h-4px rounded-circle bg-primary-400"
+                      ></span>
+                      <span class="fs-8 fw-bold text-uppercase text-white"
+                        >AI Music Generator v3.0</span
+                      >
+                    </div>
+                    <h1
+                      class="h1 sm:display-6 md:display-5 lg:display-4 xl:display-3 m-0 text-white"
+                    >
+                      Create music with
+                      <span
+                        class="d-inline-flex px-1 bg-secondary text-primary -rotate-1 lg:-rotate-2 rounded-1 lg:rounded-1-5"
+                        >AI magic</span
+                      >
+                      <br />
+                      in seconds!
+                    </h1>
+                    <p
+                      class="fs-5 xl:fs-4 text-black dark:text-white d-none md:d-block"
+                    >
+                      Transform your ideas into professional music with our
+                      advanced AI composer. Generate royalty-free tracks, beats,
+                      and melodies that match your vision perfectly.
+                    </p>
+                    <!-- Music Generation Interface -->
+                    <div class="music-generator-container max-w-500px mx-auto">
+                      <div class="input-group mb-3">
+                        <input 
+                          type="text" 
+                          id="music-prompt" 
+                          class="form-control bg-white dark:bg-gray-800 text-dark dark:text-white border-2 border-primary-200 dark:border-primary-400 rounded-start-pill px-4 py-3"
+                          placeholder="Describe your music... (e.g., upbeat jazz with saxophone)"
+                          maxlength="200"
+                        >
+                        <button 
+                          id="generate-music-btn" 
+                          class="btn btn-md lg:btn-lg btn-primary rounded-end-pill px-4"
+                          type="button"
+                        >
+                          <span>Generate Music</span>
+                          <i class="icon icon-narrow unicon-arrow-right fw-bold ms-1"></i>
+                        </button>
+                      </div>
+                      
+                      <!-- Loading Spinner -->
+                      <div id="loading-spinner" class="text-center my-3" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="fs-7 text-white mt-2">Creating your music... this may take a moment</p>
+                      </div>
+                      
+                      <!-- Error Message -->
+                      <div id="error-message" class="alert alert-danger mt-3" role="alert" style="display: none;">
+                        Error message will appear here
+                      </div>
+                      
+                      <!-- Success Message -->
+                      <div id="success-message" class="alert alert-success mt-3" role="alert" style="display: none;">
+                        Success message will appear here
+                      </div>
+                      
+                      <!-- Audio Player -->
+                      <div id="audio-container" class="mt-4" style="display: none;">
+                        <div class="audio-player-wrapper bg-white dark:bg-gray-800 rounded-pill p-3 shadow-lg">
+                          <audio id="audio-player" controls class="w-100" style="height: 50px;">
+                            Your browser does not support the audio element.
+                          </audio>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <p class="fs-7 text-black dark:text-white mt-3">
+                      Powered by Eleven Labs AI - Generate unlimited music tracks.
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="panel"
+                    data-anime="targets: >*:not(.dashboard-image); scale: [0.5, 1]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+                  >
+                    <div
+                      class="dashboard-image max-w-lg mx-auto max-h-250px lg:max-h-550px overflow-hidden"
+                      data-anime="translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+                    >
+                      <img
+                        class="shadow-md lg:shadow-lg rounded-2 lg:rounded-3"
+                        src="/assets/images/home/gram_ai_dashboard.svg"
+                        alt="app-dashboard"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+
+      <!-- Section start -->
+      <div id="features" class="features section panel">
+        <div class="section-outer panel pt-6 lg:pt-8 xl:pt-10">
+          <div class="container xl:max-w-xl">
+            <div class="section-inner panel">
+              <div
+                class="panel vstack items-center gap-2 xl:gap-3 mb-4 lg:mb-8 max-w-650px mx-auto text-center"
+                data-anime="onview: -100; targets: >*; translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+              >
+                <div class="cstack gap-1 py-1 px-2 border rounded-pill">
+                  <span
+                    class="d-inline-block w-4px h-4px rounded-circle bg-primary dark:bg-secondary"
+                  ></span>
+                  <span class="fs-8 fw-bold text-uppercase">AI Features</span>
+                </div>
+                <h2 class="h3 lg:h2 xl:h1 m-0 px-2">
+                  No
+                  <span
+                    class="d-inline-flex px-1 bg-secondary text-primary -rotate-1 lg:-rotate-2 rounded-1 lg:rounded-1-5"
+                    >musical skills</span
+                  >
+                  required.
+                </h2>
+                <p
+                  class="fs-6 xl:fs-5 text-black dark:text-white text-opacity-70"
+                >
+                  Unleash your creativity with our AI's powerful music
+                  generation and intuitive interface, experience the magic of AI
+                  composition.
+                </p>
+              </div>
+              <div class="row child-cols-12 lg:child-cols-5 col-match g-2">
+                <div class="lg:col-7">
+                  <div
+                    class="panel overflow-hidden bg-secondary text-white dark:bg-gray-800 dark:text-white rounded-2 lg:rounded-3"
+                    data-anime="onview: -100; translateY: [80, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: 0;"
+                  >
+                    <div
+                      class="panel vstack items-start gap-2 p-3 lg:p-4 xl:p-6"
+                      data-anime="onview: -100; targets: >*; translateY: [16, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 500});"
+                    >
+                      <p class="fs-6 md:fs-5 lg:fs-4 m-0">
+                        Text-to-Music Generation: Simply describe your vision
+                        and watch AI create professional tracks instantly.
+                      </p>
+                      <a
+                        href="/pricing.html"
+                        class="btn btn-sm btn-primary px-2 mt-2"
+                      >
+                        <span>Try it now</span>
+                        <i
+                          class="icon icon-narrow unicon-arrow-right fw-bold rtl:rotate-180"
+                        ></i>
+                      </a>
+                    </div>
+                    <div
+                      class="panel ltr:ps-3 ltr:lg:ps-4 ltr:xl:ps-6 rtl:pe-3 rtl:lg:pe-4 rtl:xl:pe-6"
+                    >
+                      <img
+                        class="ltr:rounded-top-start-1-5 rtl:rounded-top-end-1-5"
+                        src="/assets/images/home/text-to-music-generator.png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="panel vstack items-start overflow-hidden bg-primary-700 rounded-2 lg:rounded-3 uc-dark"
+                    data-anime="onview: -100; translateY: [80, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: 100;"
+                  >
+                    <div
+                      class="position-cover opacity-70 bg-cover"
+                      style="background-position: 50% 85%"
+                      data-src="/assets/images/template/feature-06-bg-masked.png"
+                      data-uc-img
+                    ></div>
+                    <div
+                      class="position-cover bg-gradient-to-t from-gray-800 via-transparent to-gray-900"
+                    ></div>
+                    <div
+                      class="position-absolute d-inline-block w-500px h-500px rounded-circle bg-gradient-45 from-primary to-white start-50 blur-10 translate-middle blend-soft-light"
+                    ></div>
+                    <div class="panel p-3">
+                      <img
+                        class="rounded-bottom-1-5 lg:rounded-bottom-3"
+                        src="/assets/images/home/ai-studio.png"
+                        alt="dashboard-components"
+                      />
+                    </div>
+                    <div
+                      class="panel vstack items-start justify-between gap-2 p-3 lg:p-4 xl:p-6 pt-0 lg:pt-0 xl:pt-0"
+                      data-anime="onview: -100; targets: >*; translateY: [16, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 500});"
+                    >
+                      <div class="content vstack items-start gap-2">
+                        <h4 class="h4 m-0">AI Music Studio</h4>
+                        <p class="fs-6 lg:fs-5 dark:text-white">
+                          Professional music creation tools powered by advanced
+                          AI algorithms for every genre and style.
+                        </p>
+                      </div>
+                      <a
+                        href="/pricing.html"
+                        class="btn btn-sm btn-secondary text-primary px-2 mt-2"
+                      >
+                        <span>Explore studio</span>
+                        <i
+                          class="icon icon-narrow unicon-arrow-right fw-bold rtl:rotate-180"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="panel vstack items-start overflow-hidden bg-gray-800 rounded-2 lg:rounded-3 uc-dark"
+                    data-anime="onview: -100; translateY: [80, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: 200;"
+                  >
+                    <div
+                      class="position-cover opacity-70 bg-cover"
+                      style="background-position: 50% 85%"
+                      data-src="/assets/images/template/feature-06-bg-masked-2.png"
+                      data-uc-img
+                    ></div>
+                    <div
+                      class="position-cover bg-gradient-to-t from-gray-800 via-transparent to-gray-900"
+                    ></div>
+                    <div
+                      class="position-absolute d-inline-block w-500px h-500px rounded-circle bg-gradient-45 from-primary to-white start-50 blur-10 translate-middle blend-soft-light"
+                    ></div>
+                    <div class="panel px-3 lg:px-4 xl:px-6">
+                      <img
+                        class="rounded-bottom-1-5 border border-top-0"
+                        src="/assets/images/home/gener-mastery.png"
+                        alt="ui components"
+                      />
+                    </div>
+                    <div
+                      class="panel vstack items-start justify-between gap-2 p-3 lg:p-4 xl:p-6"
+                      data-anime="onview: -100; targets: >*; translateY: [16, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 500});"
+                    >
+                      <div class="content vstack items-start gap-2">
+                        <h4 class="h4 m-0">Genre Mastery</h4>
+                        <p class="fs-6 lg:fs-5 dark:text-white">
+                          From classical to electronic, hip-hop to ambient - our
+                          AI masters every musical genre with professional
+                          quality output.
+                        </p>
+                      </div>
+                      <a
+                        href="/pricing.html"
+                        class="btn btn-sm btn-secondary text-primary px-2 mt-2"
+                      >
+                        <span>Explore genres</span>
+                        <i
+                          class="icon icon-narrow unicon-arrow-right fw-bold rtl:rotate-180"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="lg:col-7">
+                  <div
+                    class="panel vstack items-start overflow-hidden bg-secondary text-white dark:bg-gray-800 dark:text-white rounded-2 lg:rounded-3 uc-dark"
+                    data-anime="onview: -100; translateY: [80, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: 300;"
+                  >
+                    <div
+                      class="panel vstack items-center gap-2 p-3 lg:p-4 xl:p-6"
+                      data-anime="onview: -100; targets: >*; translateY: [16, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 500});"
+                    >
+                      <h4 class="h4 m-0">Instant Music Creation</h4>
+                      <p class="fs-6 md:fs-5 lg:fs-4 m-0 xl:px-4 text-center">
+                        Transform your ideas into professional music tracks in
+                        seconds with our advanced AI composer.
+                      </p>
+                    </div>
+                    <div class="panel px-3 lg:px-4 xl:px-6 mb-2 lg:mb-5">
+                      <img
+                        src="/assets/images/home/instant-music-creation.png"
+                        alt="builder-tools"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+
+      <!-- Section start -->
+      <div
+        id="clients_brands"
+        class="clients-brands section panel overflow-hidden"
+      >
+        <div class="section-outer panel py-6 lg:pt-8 xl:pt-10">
+          <div class="container xl:max-w-lg">
+            <div class="section-inner panel vstack gap-3 xl:gap-4 text-center">
+              <h4
+                class="h4 px-8"
+                data-anime="onview: -100; translateY: [16, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: 0"
+              >
+                Trusted by creators, artists, and producers worldwide
+              </h4>
+              <div
+                class="brands row child-cols-4 lg:child-cols-3 items-center justify-center text-center g-2 sm:g-4 lg:g-6"
+                data-anime="onview: -100; targets: > *; translateY: [-16, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(200);"
+              >
+                <div>
+                  <img
+                    class="max-w-100px md:max-w-128px text-black dark:text-secondary"
+                    src="/assets/images/brands/brand-01.svg"
+                    alt="Proline"
+                    data-uc-svg
+                  />
+                </div>
+                <div>
+                  <img
+                    class="max-w-100px md:max-w-128px text-black dark:text-secondary"
+                    src="/assets/images/brands/brand-02.svg"
+                    alt="Iceberg"
+                    data-uc-svg
+                  />
+                </div>
+                <div>
+                  <img
+                    class="max-w-100px md:max-w-128px text-black dark:text-secondary"
+                    src="/assets/images/brands/brand-03.svg"
+                    alt="PinPoint"
+                    data-uc-svg
+                  />
+                </div>
+                <div>
+                  <img
+                    class="max-w-100px md:max-w-128px text-black dark:text-secondary"
+                    src="/assets/images/brands/brand-04.svg"
+                    alt="Clues"
+                    data-uc-svg
+                  />
+                </div>
+                <div>
+                  <img
+                    class="max-w-100px md:max-w-128px text-black dark:text-secondary"
+                    src="/assets/images/brands/brand-05.svg"
+                    alt="Snowflake"
+                    data-uc-svg
+                  />
+                </div>
+                <div>
+                  <img
+                    class="max-w-100px md:max-w-128px text-black dark:text-secondary"
+                    src="/assets/images/brands/brand-06.svg"
+                    alt="Proline"
+                    data-uc-svg
+                  />
+                </div>
+                <div>
+                  <img
+                    class="max-w-100px md:max-w-128px text-black dark:text-secondary"
+                    src="/assets/images/brands/brand-07.svg"
+                    alt="Iceberg"
+                    data-uc-svg
+                  />
+                </div>
+                <div>
+                  <img
+                    class="max-w-100px md:max-w-128px text-black dark:text-secondary"
+                    src="/assets/images/brands/brand-08.svg"
+                    alt="PinPoint"
+                    data-uc-svg
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+
+      <!-- Section start -->
+      <div id="how_it_works" class="how-it-works section panel">
+        <div
+          class="section-outer panel"
+          data-anime="onscroll: .how-it-works; onscroll-trigger: 1; translateY: [80, 0]; scale: [0.8, 1]; opacity: [0, 1]; easing: linear;"
+        >
+          <div class="container xl:max-w-xl">
+            <div
+              class="panel overflow-hidden ratio ratio-16x9 rounded-2 lg:rounded-3 border border-2 border-white dark:border-gray-700"
+            >
+              <video
+                src="/assets/videos/demo-video.webm"
+                preload="none"
+                loop=""
+                poster="/assets/images/common/logo-light.svg"
+                muted=""
+                playsinline=""
+                data-uc-cover
+                data-uc-video="autoplay: true;"
+              ></video>
+              <div
+                class="position-cover bg-black bg-opacity-40"
+                data-uc-lightbox="video-autoplay: true; animation: scale;"
+              >
+                <a
+                  href="/assets/videos/demo-video.webm"
+                  data-attrs="width: 720; height: 640;"
+                  class="position-absolute top-50 start-50 translate-middle uc-link w-64px lg:w-100px h-64px lg:h-100px rounded-circle cstack bg-white bg-opacity-70 backdrop-2 text-primary"
+                >
+                  <i class="icon-3 unicon-play fw-bold"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+
+      <!-- Section start -->
+      <div id="builder_elements" class="builder-elements section panel">
+        <div class="section-outer panel py-6 lg:py-8 xl:py-10">
+          <div class="container xl:max-w-xl">
+            <div
+              class="section-inner panel vstack items-center gap-3 xl:gap-4 text-center max-w-100"
+              data-anime="onview: -100; targets: > *; translateY: [-40, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(200);"
+            >
+              <h4 class="h4 m-0">250+ Musical Styles and Instruments</h4>
+              <div class="panel w-100">
+                <div
+                  class="swiper mask-x"
+                  data-uc-swiper="items: 2.5; gap: 16; center: true; center-bounds: true; autoplay: 7000; loop: true; speed: 7000; autoplay-delay: -1; autoplay-disableOnInteraction: true; allowTouchMove: false;"
+                  data-uc-swiper-m="items: 3; gap: 20;"
+                  data-uc-swiper-l="items: 5; gap: 24;"
+                >
+                  <div class="swiper-wrapper items-center ease-linear">
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/section.svg"
+                          alt="Genre : Classical"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Classical</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/column.svg"
+                          alt="Genre : Electronic"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Electronic</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/div.svg"
+                          alt="Genre : Jazz"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium">Jazz</span>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/heading.svg"
+                          alt="Genre : Hip-Hop"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Hip-Hop</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/form.svg"
+                          alt="Genre : Rock"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium">Rock</span>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/button.svg"
+                          alt="Genre : Pop"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium">Pop</span>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/divider.svg"
+                          alt="Genre : Ambient"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Ambient</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/spacer.svg"
+                          alt="Genre : Country"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Country</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="swiper mask-x my-2 md:my-3"
+                  data-uc-swiper="items: 2.5; gap: 16; center: true; center-bounds: true; autoplay: 7000; loop: true; speed: 7000; autoplay-delay: -1; autoplay-disableOnInteraction: true; autoplay-reverseDirection: true; allowTouchMove: false;"
+                  data-uc-swiper-m="items: 3; gap: 20;"
+                  data-uc-swiper-l="items: 5; gap: 24;"
+                >
+                  <div class="swiper-wrapper items-center ease-linear">
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/divider.svg"
+                          alt="Instrument : Piano"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Piano</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/spacer.svg"
+                          alt="Instrument : Guitar"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Guitar</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/image.svg"
+                          alt="Instrument : Drums"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Drums</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/video.svg"
+                          alt="Instrument : Violin"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Violin</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/map.svg"
+                          alt="Instrument : Bass"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium">Bass</span>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/charts.svg"
+                          alt="Instrument : Synth"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Synth</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/blog.svg"
+                          alt="Instrument : Flute"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Flute</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/portfolio.svg"
+                          alt="Instrument : Trumpet"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Trumpet</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="swiper mask-x"
+                  data-uc-swiper="items: 2.5; gap: 16; center: true; center-bounds: true; autoplay: 7000; loop: true; speed: 7000; autoplay-delay: -1; autoplay-disableOnInteraction: true; allowTouchMove: false;"
+                  data-uc-swiper-m="items: 3; gap: 20;"
+                  data-uc-swiper-l="items: 5; gap: 24;"
+                >
+                  <div class="swiper-wrapper items-center ease-linear">
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/video.svg"
+                          alt="Style : Orchestral"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Orchestral</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/map.svg"
+                          alt="Style : Cinematic"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Cinematic</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/charts.svg"
+                          alt="Style : Lo-Fi"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Lo-Fi</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/blog.svg"
+                          alt="Style : Trap"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium">Trap</span>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/portfolio.svg"
+                          alt="Style : Reggae"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Reggae</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/ecommerce.svg"
+                          alt="Style : Blues"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >Blues</span
+                        >
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/content.svg"
+                          alt="Style : Folk"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium">Folk</span>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="cstack gap-1 md:gap-2 p-1 md:p-2 border rounded-pill"
+                      >
+                        <img
+                          class="icon icon-1 md:icon-2 lg:icon-3 text-primary dark:text-secondary"
+                          src="/assets/images/common/icons/homepage.svg"
+                          alt="Style : World"
+                          data-uc-svg
+                        />
+                        <span class="fs-7 md:fs-6 lg:fs-5 fw-medium"
+                          >World</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="/pricing.html"
+                class="btn btn-sm lg:btn-md btn-primary px-3 md:mt-2 lg:mt-4"
+              >
+                <span>Explore all genres</span>
+                <i
+                  class="icon icon-narrow unicon-arrow-right fw-bold rtl:rotate-180"
+                ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+
+      <!-- Section start -->
+      <div id="pricing" class="pricing section panel overflow-hidden uc-dark">
+        <div
+          class="section-outer panel py-4 overflow-hidden md:py-6 xl:py-10 mx-2 rounded-2 lg:rounded-3 bg-secondary dark:bg-primary-700 dark:text-white"
+        >
+          <div
+            class="position-cover opacity-70 bg-contain"
+            style="background-position: 50% 85%"
+          ></div>
+          <div
+            class="position-cover bg-gradient-to-t from-gray-800 via-transparent to-gray-900"
+          ></div>
+          <div class="container xl:max-w-xl">
+            <div class="section-inner panel">
+              <div class="panel vstack gap-4 sm:gap-6 xl:gap-8">
+                <div
+                  class="heading vstack items-center gap-2 panel max-w-550px mx-auto text-center"
+                  data-anime="onview: -100; targets: >*; translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+                >
+                  <div class="cstack gap-1 py-1 px-2 border rounded-pill">
+                    <span
+                      class="d-inline-block w-4px h-4px rounded-circle bg-primary dark:bg-secondary"
+                    ></span>
+                    <span class="fs-8 fw-bold text-uppercase">Pricing</span>
+                  </div>
+                  <h2 class="title h3 lg:h2 xl:h1 m-0 px-2">
+                    Simple
+                    <span
+                      class="d-inline-flex px-1 bg-secondary text-primary -rotate-1 lg:-rotate-2 rounded-1 lg:rounded-1-5"
+                      >transparent</span
+                    >
+                    pricing.
+                  </h2>
+                  <p class="fs-6 xl:fs-5 text-opacity-70">
+                    Create unlimited music. Cancel anytime.
+                  </p>
+                </div>
+                <div class="content panel">
+                  <div
+                    class="row child-cols-12 sm:child-cols-6 xl:child-cols-4 col-match justify-center g-2 lg:g-4"
+                    data-anime="onview: -100; targets: >*; translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 400});"
+                  >
+                    <div>
+                      <div
+                        class="tier panel vstack justify-between p-2 rounded-1-5 lg:rounded-2 bg-white text-gray-900 text-center"
+                      >
+                        <header
+                          class="tier-header vstack gap-2 items-center p-2 md:p-4"
+                        >
+                          <h5 class="h5 lg:h4 m-0 text-primary">Starter</h5>
+                          <div class="d-flex gap-narrow items-end mt-1">
+                            <h3 class="h1 lg:display-6 price m-0 text-dark">
+                              $0
+                            </h3>
+                            <span class="h6 lg:h3 m-0 pb-narrow text-dark"
+                              >/ mo</span
+                            >
+                          </div>
+                          <p class="desc lg:fs-5">
+                            Perfect for <b>trying out</b> AI music generation.
+                          </p>
+                          <a
+                            class="btn btn-md lg:btn-lg btn-secondary w-100 mt-2"
+                            href="sign-up.html"
+                          >
+                            <span>Start free</span>
+                          </a>
+                          <p class="details">10 tracks included!</p>
+                        </header>
+                        <div class="tier-body p-2 md:p-4">
+                          <ul class="nav-y gap-2 text-start">
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">10 tracks per month</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Basic AI models</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">5 music genres</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">MP3 downloads</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Personal use license</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Community support</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div
+                        class="tier panel vstack justify-between p-2 rounded-1-5 lg:rounded-2 bg-white text-gray-900 text-center"
+                      >
+                        <div
+                          class="position-absolute top-0 end-0 cstack gap-1 py-narrow px-1 my-2 mx-3 bg-secondary rounded-default -rotate-2"
+                        >
+                          <span class="fs-8 fw-bold text-uppercase text-primary"
+                            >Save $25</span
+                          >
+                        </div>
+                        <header
+                          class="tier-header vstack gap-2 items-center p-2 md:p-4"
+                        >
+                          <h5 class="h5 lg:h4 m-0 text-primary">Creator</h5>
+                          <div class="d-flex gap-narrow items-end mt-1">
+                            <h3 class="h1 lg:display-6 price m-0 text-dark">
+                              $19
+                            </h3>
+                            <span class="h6 lg:h3 m-0 pb-narrow text-dark"
+                              >/ mo</span
+                            >
+                          </div>
+                          <p class="desc lg:fs-5">
+                            Perfect for <b>content creators</b> and musicians.
+                          </p>
+                          <a
+                            class="btn btn-md lg:btn-lg btn-primary w-100 mt-2"
+                            href="sign-up.html"
+                          >
+                            <span>Start creating</span>
+                          </a>
+                          <p class="details">Most popular plan!</p>
+                        </header>
+                        <div class="tier-body p-2 md:p-4">
+                          <ul class="nav-y gap-2 text-start">
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">500 tracks per month</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Advanced AI models</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">All music genres</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">WAV + MP3 downloads</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Commercial license</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Priority support</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div
+                        class="tier panel vstack justify-between p-2 rounded-1-5 lg:rounded-2 bg-white text-gray-900 text-center"
+                      >
+                        <header
+                          class="tier-header vstack gap-2 items-center p-2 md:p-4"
+                        >
+                          <h5 class="h5 lg:h4 m-0 text-primary">Studio</h5>
+                          <div class="d-flex gap-narrow items-end mt-1">
+                            <h3 class="h1 lg:display-6 price m-0 text-dark">
+                              $49
+                            </h3>
+                            <span class="h6 lg:h3 m-0 pb-narrow text-dark"
+                              >/ mo</span
+                            >
+                          </div>
+                          <p class="desc lg:fs-5">
+                            For <b>professional studios</b> and agencies
+                          </p>
+                          <a
+                            class="btn btn-md lg:btn-lg btn-secondary w-100 mt-2"
+                            href="sign-up.html"
+                          >
+                            <span>Go professional</span>
+                          </a>
+                          <p class="details">Everything included!</p>
+                        </header>
+                        <div class="tier-body p-2 md:p-4">
+                          <ul class="nav-y gap-2 text-start">
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline"
+                                >Unlimited track generation</span
+                              >
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Premium AI models</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Custom AI training</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">All formats + stems</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">White-label license</span>
+                            </li>
+                            <li class="hstack items-start gap-2">
+                              <i
+                                class="cstack w-24px h-24px bg-secondary text-primary rounded-circle unicon-checkmark fw-bold"
+                              ></i>
+                              <span class="d-inline">Dedicated support</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p
+                  class="text-center dark:text-white"
+                  data-anime="onview: -100; translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: 200;"
+                >
+                  All plans include royalty-free commercial usage rights.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+
+      <!-- Section start -->
+      <div id="clients_feedback" class="clients-feedback section panel">
+        <div
+          class="section-outer panel py-6 lg:py-8 xl:py-10 bg-secondary text-white rounded-2 lg:rounded-3 m-2"
+        >
+          <div class="container xl:max-w-xl">
+            <div
+              class="section-inner panel vstack items-center gap-4 md:gap-6 lg:gap-8 max-w-100"
+              data-anime="onview: -100; targets: > *; translateY: [-40, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(200);"
+            >
+              <div
+                class="panel vstack items-center gap-2 xl:gap-3 text-center"
+                data-anime="onview: -100; targets: >*; translateY: [-48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+              >
+                <div class="cstack gap-1 py-1 px-3 border rounded-pill">
+                  <span
+                    class="d-inline-block w-4px h-4px rounded-circle bg-primary"
+                  ></span>
+                  <span class="fs-8 fw-bold text-uppercase"
+                    >Creator feedback</span
+                  >
+                </div>
+                <p class="h3 lg:h2 xl:h1 m-0 px-2 text-white">
+                  Don't
+                  <span
+                    class="d-inline-flex px-1 bg-primary text-secondary -rotate-1 lg:-rotate-2 rounded-1 lg:rounded-1-5"
+                    >just take our words</span
+                  >
+                  for it!
+                </p>
+              </div>
+              <div class="panel w-100 mask-x">
+                <div
+                  class="swiper"
+                  data-uc-swiper="items: 1; gap: 16; center: true; center-bounds: true; autoplay: 0; loop: true; speed: 10000; autoplay-delay: -1; allowTouchMove: false; autoplay-pauseOnMouseEnter: true; autoplay-disableOnInteraction: true;"
+                  data-uc-swiper-l="items: 2; gap: 24;"
+                >
+                  <div class="swiper-wrapper items-center ease-linear">
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "songgram.ai has revolutionized my music production
+                            workflow. I can now create professional backing
+                            tracks in minutes instead of hours. The AI
+                            understands exactly what I'm looking for and
+                            delivers incredible results every time."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Stuart</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Music Producer</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "As a content creator, I needed royalty-free music
+                            that matched my brand perfectly. songgram.ai's AI
+                            generates exactly what I envision, and the quality
+                            is indistinguishable from professionally composed
+                            tracks."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Marcus Rodriguez</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >YouTuber & Podcaster</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "The AI's ability to understand genre nuances is
+                            incredible. I've used it for everything from ambient
+                            soundscapes to energetic electronic beats, and it
+                            never fails to capture the exact mood I'm after."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Alex Thompson</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Film Composer</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "I was skeptical about AI music at first, but
+                            songgram.ai changed my mind completely. The tracks
+                            it generates are so musical and creative - it's like
+                            having a talented composer available 24/7."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Emma Wilson</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Independent Artist</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "songgram.ai has completely transformed how I
+                            approach music production. The AI understands
+                            musical nuances better than I expected, creating
+                            tracks that feel genuinely inspired and emotionally
+                            resonant."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">David Martinez</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Electronic Music Producer</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "As a game developer, finding the right background
+                            music was always a challenge. songgram.ai generates
+                            perfect ambient tracks that match our game's
+                            atmosphere exactly. It's like having a composer on
+                            demand."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Lisa Chen</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Game Developer</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "The variety of genres and styles songgram.ai can
+                            produce is incredible. From jazz to electronic to
+                            world music, it captures the essence of each genre
+                            with remarkable authenticity and creativity."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Michael Johnson</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Music Director</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "songgram.ai has become an essential part of my
+                            creative workflow. The AI doesn't just generate
+                            music - it inspires new ideas and directions I
+                            wouldn't have thought of on my own."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Rachel Kim</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Singer-Songwriter</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="swiper mt-2 lg:mt-3"
+                  data-uc-swiper="items: 1; gap: 16; center: true; center-bounds: true; autoplay: 0; loop: true; speed: 10000; autoplay-delay: -1; allowTouchMove: false; autoplay-pauseOnMouseEnter: true; autoplay-disableOnInteraction: true; autoplay-reverseDirection: true;"
+                  data-uc-swiper-l="items: 2; gap: 24;"
+                >
+                  <div class="swiper-wrapper items-center ease-linear">
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "The speed and quality of music generation with
+                            songgram.ai is unmatched. I can create full
+                            orchestral arrangements in minutes that would
+                            normally take days to compose and arrange."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">James Wilson</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Film Score Composer</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "songgram.ai has revolutionized my podcast
+                            production. The AI creates perfect intro music,
+                            background tracks, and transitions that perfectly
+                            match the mood and tone of each episode."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Amanda Foster</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Podcast Host</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "As a music teacher, I use songgram.ai to create
+                            backing tracks for my students. The AI generates
+                            educational content that helps students learn
+                            different musical styles and techniques."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">
+                              Professor Elena Rodriguez
+                            </h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Music Educator</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "The commercial licensing is straightforward and the
+                            music quality is exceptional. songgram.ai has become
+                            my go-to solution for all client projects requiring
+                            original music."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Tom Anderson</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Creative Director</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "songgram.ai understands the emotional context of
+                            music better than any other AI tool I've used. It
+                            creates soundtracks that genuinely enhance the
+                            storytelling in my documentaries."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Maya Patel</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Documentary Filmmaker</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "The AI's ability to create music that matches
+                            specific moods and energy levels is remarkable. It's
+                            transformed how I approach music for fitness classes
+                            and wellness sessions."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Carlos Mendez</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Fitness Instructor</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "songgram.ai has democratized music creation for our
+                            entire team. Now everyone can contribute musical
+                            ideas to our projects, regardless of their musical
+                            background or training."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Jennifer Lee</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Creative Agency Owner</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div
+                        class="panel vstack justify-between gap-3 p-3 lg:p-4 xl:p-6 bg-white text-black rounded-1-5 h-100"
+                      >
+                        <div class="panel vstack items-start gap-2 lg:gap-4">
+                          <div class="rating d-flex gap-0">
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                            <img
+                              class="icon icon-1"
+                              src="/assets/images/star.svg"
+                              alt="star"
+                              data-uc-svg
+                            />
+                          </div>
+                          <p class="fs-5 lg:fs-4">
+                            "The consistency and reliability of songgram.ai's
+                            output is impressive. Every track maintains
+                            professional quality while offering unique creative
+                            elements that keep my content fresh and engaging."
+                          </p>
+                        </div>
+                        <div class="panel mt-2 lg:mt-4">
+                          <div class="panel vstack items-start gap-narrow">
+                            <h6 class="h5 m-0 text-black">Kevin Park</h6>
+                            <span class="fs-7 lg:h6 opacity-70"
+                              >Social Media Creator</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+
+      <!-- Section start -->
+      <div id="faq" class="faq section panel">
+        <div class="section-outer panel py-6 xl:py-10">
+          <div class="container xl:max-w-xl">
+            <div
+              class="section-inner panel"
+              data-anime="onview: -100; targets: >*; translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+            >
+              <div
+                class="faq-inner panel row child-cols-12 lg:child-cols justify-between g-4"
+              >
+                <div class="lg:col-5">
+                  <div
+                    class="panel vstack items-start gap-2"
+                    data-uc-sticky="end: .faq-inner; offset: 50vh - 50%; media: @l;"
+                  >
+                    <div class="cstack gap-1 py-1 px-3 border rounded-pill">
+                      <span
+                        class="d-inline-block w-4px h-4px rounded-circle bg-primary dark:bg-secondary"
+                      ></span>
+                      <span class="fs-8 fw-bold text-uppercase">FAQs</span>
+                    </div>
+                    <h2 class="h3 lg:h2 m-0">Frequently Asked Questions</h2>
+                    <p class="fs-6 lg:fs-5">
+                      Everything you need to know about creating music with AI.
+                      Can't find the answer you're looking for? Feel free to
+                      reach out.
+                    </p>
+                    <a
+                      class="btn btn-sm lg:btn-md btn-primary px-3 mt-2"
+                      href="javascript:void(0)"
+                    >
+                      <span>Still have a question?</span>
+                      <i
+                        class="icon icon-narrow unicon-arrow-right fw-bold rtl:rotate-180"
+                      ></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="lg:col-6">
+                  <div class="panel">
+                    <ul
+                      class="gap-2"
+                      data-uc-accordion="targets: > li; multiple: true"
+                    >
+                      <li class="panel p-2 md:p-4 border rounded-1-5">
+                        <a
+                          class="uc-accordion-title fs-5 sm:fs-4 ltr:pe-4 rtl:ps-4"
+                          href="javascript:void(0)"
+                          >Do I need musical knowledge to use songgram.ai?</a
+                        >
+                        <div class="uc-accordion-content">
+                          <p>
+                            Not at all! songgram.ai is designed for everyone,
+                            from complete beginners to professional musicians.
+                            Simply describe what you want in plain English, and
+                            our AI will create the music for you.
+                          </p>
+                        </div>
+                      </li>
+                      <li class="panel p-2 md:p-4 border rounded-1-5">
+                        <a
+                          class="uc-accordion-title fs-5 sm:fs-4 ltr:pe-4 rtl:ps-4"
+                          href="javascript:void(0)"
+                          >Can I use the generated music commercially?</a
+                        >
+                        <div class="uc-accordion-content">
+                          <p>
+                            Yes! All music generated with songgram.ai comes with
+                            full commercial usage rights. You can use it in your
+                            videos, podcasts, games, or any other commercial
+                            projects without worrying about royalties.
+                          </p>
+                        </div>
+                      </li>
+                      <li class="panel p-2 md:p-4 border rounded-1-5">
+                        <a
+                          class="uc-accordion-title fs-5 sm:fs-4 ltr:pe-4 rtl:ps-4"
+                          href="javascript:void(0)"
+                          >How does the AI music generation work?</a
+                        >
+                        <div class="uc-accordion-content">
+                          <p>
+                            Our AI has been trained on millions of musical
+                            compositions across all genres. You simply provide a
+                            text description of what you want, and the AI
+                            analyzes your request to generate original music
+                            that matches your specifications.
+                          </p>
+                        </div>
+                      </li>
+                      <li class="panel p-2 md:p-4 border rounded-1-5">
+                        <a
+                          class="uc-accordion-title fs-5 sm:fs-4 ltr:pe-4 rtl:ps-4"
+                          href="javascript:void(0)"
+                          >What music formats can I download?</a
+                        >
+                        <div class="uc-accordion-content">
+                          <p>
+                            You can download your generated music in MP3 format
+                            on all plans. Creator and Studio plans also include
+                            WAV files and individual instrument stems for
+                            professional mixing.
+                          </p>
+                        </div>
+                      </li>
+                      <li class="panel p-2 md:p-4 border rounded-1-5">
+                        <a
+                          class="uc-accordion-title fs-5 sm:fs-4 ltr:pe-4 rtl:ps-4"
+                          href="javascript:void(0)"
+                          >How many tracks can I generate?</a
+                        >
+                        <div class="uc-accordion-content">
+                          <p>
+                            It depends on your plan: Starter includes 10 tracks
+                            per month, Creator includes 500 tracks per month,
+                            and Studio offers unlimited generation. All unused
+                            tracks roll over to the next month.
+                          </p>
+                        </div>
+                      </li>
+                      <li class="panel p-2 md:p-4 border rounded-1-5">
+                        <a
+                          class="uc-accordion-title fs-5 sm:fs-4 ltr:pe-4 rtl:ps-4"
+                          href="javascript:void(0)"
+                          >Can I customize the generated music?</a
+                        >
+                        <div class="uc-accordion-content">
+                          <p>
+                            Absolutely! You can specify genre, mood, tempo,
+                            instruments, and even reference existing songs. Our
+                            AI gives you fine-grained control over every aspect
+                            of your music creation.
+                          </p>
+                        </div>
+                      </li>
+                      <li class="panel p-2 md:p-4 border rounded-1-5">
+                        <a
+                          class="uc-accordion-title fs-5 sm:fs-4 ltr:pe-4 rtl:ps-4"
+                          href="javascript:void(0)"
+                          >Is the generated music truly original?</a
+                        >
+                        <div class="uc-accordion-content">
+                          <p>
+                            Yes! Every track generated by songgram.ai is
+                            completely original and unique. Our AI creates new
+                            compositions rather than copying existing music,
+                            ensuring you get truly one-of-a-kind tracks.
+                          </p>
+                        </div>
+                      </li>
+                      <li class="panel p-2 md:p-4 border rounded-1-5">
+                        <a
+                          class="uc-accordion-title fs-5 sm:fs-4 ltr:pe-4 rtl:ps-4"
+                          href="javascript:void(0)"
+                          >What genres does the AI support?</a
+                        >
+                        <div class="uc-accordion-content">
+                          <p>
+                            Our AI supports over 250 musical styles including
+                            pop, rock, classical, jazz, electronic, hip-hop,
+                            ambient, world music, and many more. We're
+                            constantly adding new genres based on user requests.
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+
+      <!-- Section start -->
+      <div id="cta" class="cta section panel">
+        <div
+          class="section-outer panel py-4 sm:py-6 xl:py-8 bg-secondary text-white rounded-2 lg:rounded-3 mx-2 overflow-hidden"
+        >
+          <div class="container xl:max-w-xl">
+            <div
+              class="section-inner vstack lg:hstack items-center gap-4 lg:gap-6 text-center ltr:lg:text-start rtl:lg:text-end"
+            >
+              <div
+                class="content panel vstack items-center lg:items-start justify-center gap-2 lg:max-w-3/5 px-4 lg:px-0"
+                data-anime="onview:-100; targets: >*; translateY: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: anime.stagger(100, {start: 200});"
+              >
+                <h2 class="h2 xl:display-5 text-white">
+                  Unleash your creativity with songgram.ai.
+                </h2>
+                <p class="fs-5">
+                  Start creating professional music in seconds. No credit card
+                  required.
+                </p>
+                <a
+                  href="/pricing.html"
+                  class="btn btn-md btn-primary min-w-150px px-3 mt-4"
+                >
+                  <span>Start creating</span>
+                  <i
+                    class="icon icon-narrow unicon-arrow-right fw-bold rtl:rotate-180"
+                  ></i>
+                </a>
+              </div>
+              <div
+                class="image-wrap lg:max-w-1/2 mt-2"
+                data-anime="onview:-100; translateX: [48, 0]; opacity: [0, 1]; easing: easeOutCubic; duration: 500; delay: 500;"
+              >
+                <img
+                  class="image"
+                  src="/assets/images/home/instant-music-creation.png"
+                  alt="builder-tools"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section end -->
+    </div>
+
+    <!-- Wrapper end -->
+
+    <!-- Footer start -->
+    <footer id="uc-footer" class="uc-footer panel overflow-hidden uc-dark">
+      <div
+        class="footer-outer pb-4 lg:pb-6 dark:bg-gray-800 dark:text-white m-2 rounded-2 lg:rounded-3"
+        style="
+          background-image: url('/assets/images/home/hero-background.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div class="uc-footer-content pt-6 lg:pt-8">
+          <div class="container xl:max-w-xl">
+            <div class="uc-footer-inner vstack gap-4 lg:gap-6 xl:gap-8">
+              <div class="uc-footer-widgets panel">
+                <div class="row child-cols-6 md:child-cols col-match g-4">
+                  <div class="col-12 lg:col-6">
+                    <div
+                      class="panel vstack items-start gap-3 xl:gap-4 lg:max-w-1/2"
+                    >
+                      <div>
+                        <div class="uc-logo text-dark dark:text-white">
+                          <a
+                            class="panel text-none"
+                            href="index.html"
+                            style="width: 150px"
+                          >
+                            <img
+                              class="dark:d-none"
+                              src="/assets/images/common/logo-light.svg"
+                              alt="songgram.ai"
+                            />
+                            <img
+                              class="d-none dark:d-block"
+                              src="/assets/images/common/logo-dark.svg"
+                              alt="songgram.ai"
+                            />
+                          </a>
+                        </div>
+                        <p class="mt-2">
+                          Transform your ideas into professional music with the
+                          power of artificial intelligence.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <ul class="nav-y gap-2 fw-medium">
+                      <li class="fs-7 text-uppercase dark:text-gray-300">
+                        Product
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">How it works</a>
+                      </li>
+                      <li><a href="javascript:void(0)">Features</a></li>
+                      <li><a href="javascript:void(0)">AI Capabilities</a></li>
+                      <li>
+                        <a href="javascript:void(0)">Music Styles</a>
+                      </li>
+                      <li><a href="/pricing.html">Pricing</a></li>
+                      <li>
+                        <a href="javascript:void(0)">API Documentation</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul class="nav-y gap-2 fw-medium">
+                      <li class="fs-7 text-uppercase dark:text-gray-300">
+                        Company
+                      </li>
+                      <li><a href="javascript:void(0)">About us</a></li>
+                      <li><a href="javascript:void(0)">Careers</a></li>
+                      <li><a href="javascript:void(0)">Press</a></li>
+                      <li><a href="javascript:void(0)">Blog</a></li>
+                      <li><a href="javascript:void(0)">Media kit</a></li>
+                      <li>
+                        <a href="javascript:void(0)">Contact</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="d-none lg:d-block">
+                    <ul class="nav-y gap-2 fw-medium">
+                      <li class="fs-7 text-uppercase dark:text-gray-300">
+                        Resources
+                      </li>
+                      <li><a href="javascript:void(0)">Blog</a></li>
+                      <li><a href="javascript:void(0)">Newsletter</a></li>
+                      <li><a href="javascript:void(0)">Tutorials</a></li>
+                      <li><a href="javascript:void(0)">Help center</a></li>
+                      <li><a href="javascript:void(0)">Music Theory</a></li>
+                      <li><a href="javascript:void(0)">Support</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="uc-footer-bottom panel vstack lg:hstack gap-4 justify-between text-center pt-4 lg:pt-6 border-top dark:text-white"
+              >
+                <p class="opacity-60">
+                  songgram.ai © 2025, All rights reserved.
+                </p>
+                <ul class="nav-x justify-center gap-2 text-gray-300">
+                  <li>
+                    <a href="javascript:void(0)"
+                      ><i class="icon icon-2 unicon-logo-linkedin"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"
+                      ><i class="icon icon-2 unicon-logo-facebook"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"
+                      ><i class="icon icon-2 unicon-logo-x-filled"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"
+                      ><i class="icon icon-2 unicon-logo-instagram"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"
+                      ><i class="icon icon-2 unicon-logo-youtube"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"
+                      ><i class="icon icon-2 unicon-logo-dribbble"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Footer end -->
+
+    <!-- include jquery & bootstrap js -->
+    <script defer src="/assets/js/libs/jquery.min.js"></script>
+    <script defer src="/assets/js/libs/bootstrap.min.js"></script>
+
+    <!-- include scripts -->
+    <script defer src="/assets/js/libs/anime.min.js"></script>
+    <script defer src="/assets/js/libs/swiper-bundle.min.js"></script>
+    <script defer src="/assets/js/libs/scrollmagic.min.js"></script>
+    <script defer src="/assets/js/libs/typed.min.js"></script>
+    <script defer src="/assets/js/libs/tilt.min.js"></script>
+    <script defer src="/assets/js/libs/split-type.min.js"></script>
+    <script defer src="/assets/js/libs/prettify.min.js"></script>
+    <script defer src="/assets/js/libs/gsap.min.js"></script>
+    <script defer src="/assets/js/libs/smooth-scroll.min.js"></script>
+    <script defer src="/assets/js/core/magic-cursor.js"></script>
+    <script defer src="/assets/js/helpers/data-attr-helper.js"></script>
+    <script defer src="/assets/js/helpers/swiper-helper.js"></script>
+    <script defer src="/assets/js/helpers/splitype-helper.js"></script>
+    <script defer src="/assets/js/helpers/anime-helper.js"></script>
+    <script defer src="/assets/js/helpers/typed-helper.js"></script>
+    <script defer src="/assets/js/helpers/tilt-helper.js"></script>
+    <script defer src="/assets/js/core/marquee.js"></script>
+    <script defer src="/assets/js/uikit-components-bs.js"></script>
+
+    <!-- include app script -->
+    <script defer src="/assets/js/form.js"></script>
+    <script defer src="/assets/js/music-generator.js"></script>
+    <script defer src="/assets/js/app.js"></script>
+
+    <script>
+      // Schema toggle via URL
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const getSchema = urlParams.get("schema");
+      if (getSchema === "dark") {
+        setDarkMode(1);
+      } else if (getSchema === "light") {
+        setDarkMode(0);
+      }
+    </script>
+  </body>
+</html>
