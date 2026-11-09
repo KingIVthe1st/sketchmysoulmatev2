@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run export",
-    "deploy": "touch out/.nojekyll && gh-pages -d out"
+    "deploy": "touch out/.nojekyll && gh-pages -d out",
+    "test:security": "python3 tests/test_deployment_security.py"
   },
   "dependencies": {
     "@swc/helpers": "^0.5.0",
