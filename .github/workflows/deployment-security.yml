@@ -1,0 +1,22 @@
+name: Deployment credential checks
+
+on:
+  push:
+    paths:
+      - 'Desktop/music moments/**'
+      - '.github/workflows/deployment-security.yml'
+  pull_request:
+    paths:
+      - 'Desktop/music moments/**'
+      - '.github/workflows/deployment-security.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  deployment-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run offline deployment security checks
+        run: python3 'Desktop/music moments/tests/test_deployment_security.py'

@@ -7,6 +7,14 @@ echo ""
 
 cat << 'DEPLOYMENT_COMMANDS'
 # Navigate to application directory
+# Supply the key securely in the server environment before any deployment changes.
+# Check only its length so even shell tracing does not print the secret value.
+if [ "${#ELEVENLABS_API_KEY}" -eq 0 ]; then
+    echo "Set ELEVENLABS_API_KEY securely on the server before running this deployment." >&2
+    exit 1
+fi
+export ELEVENLABS_API_KEY
+
 cd /var/www/music-moments
 
 # Stop existing application
@@ -556,7 +564,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Set environment variables
-export ELEVENLABS_API_KEY="sk_b4fcaea82d20568e979d72db9c6b4c4cb6855733ae8b6e53"
+# ELEVENLABS_API_KEY is inherited from the validated server environment.
 export NODE_ENV="production"
 export PORT="3000"
 
